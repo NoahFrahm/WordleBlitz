@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
 //        GameView()
+//        test commit/push
         GameModeView()
 //        SoloView()
 //        animatedLetter()
