@@ -1,0 +1,845 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		092D4E2D27FB8DB900046A20 /* GameModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092D4E2C27FB8DB900046A20 /* GameModeView.swift */; };
+		092D4E3127FBA69800046A20 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092D4E3027FBA69800046A20 /* User.swift */; };
+		092D4E3327FBAAC300046A20 /* game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092D4E3227FBAAC300046A20 /* game.swift */; };
+		0985EFFB27FFF843002FE9D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0985EFFA27FFF843002FE9D9 /* GoogleService-Info.plist */; };
+		099FC70327FA4E86001729ED /* letterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099FC70227FA4E86001729ED /* letterStatus.swift */; };
+		09A51CF427F3A5FA0033F537 /* wordleBlitzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A51CF327F3A5FA0033F537 /* wordleBlitzApp.swift */; };
+		09A51CF627F3A5FA0033F537 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A51CF527F3A5FA0033F537 /* ContentView.swift */; };
+		09A51CF827F3A5FC0033F537 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09A51CF727F3A5FC0033F537 /* Assets.xcassets */; };
+		09A51CFB27F3A5FC0033F537 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09A51CFA27F3A5FC0033F537 /* Preview Assets.xcassets */; };
+		09A51D0527F3A5FD0033F537 /* wordleBlitzTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A51D0427F3A5FD0033F537 /* wordleBlitzTests.swift */; };
+		09A51D0F27F3A5FD0033F537 /* wordleBlitzUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A51D0E27F3A5FD0033F537 /* wordleBlitzUITests.swift */; };
+		09A51D1127F3A5FD0033F537 /* wordleBlitzUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A51D1027F3A5FD0033F537 /* wordleBlitzUITestsLaunchTests.swift */; };
+		09A51D2027F3A6980033F537 /* gameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A51D1F27F3A6980033F537 /* gameModel.swift */; };
+		09A51D2227F3A6A90033F537 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A51D2127F3A6A90033F537 /* GameView.swift */; };
+		09A51D2427F3AB900033F537 /* words.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A51D2327F3AB900033F537 /* words.swift */; };
+		09ADA3E327FA82C500C30111 /* animatedLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ADA3E227FA82C500C30111 /* animatedLetter.swift */; };
+		09ADA3E527FA943200C30111 /* SoloView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ADA3E427FA943200C30111 /* SoloView.swift */; };
+		09ADA3E727FA951E00C30111 /* UserStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ADA3E627FA951E00C30111 /* UserStatsView.swift */; };
+		09EAB44227FFC8570071D421 /* oneV1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EAB44127FFC8570071D421 /* oneV1View.swift */; };
+		09EAB44427FFCB470071D421 /* ChangeUsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EAB44327FFCB470071D421 /* ChangeUsernameView.swift */; };
+		09EAB44627FFEA470071D421 /* MultiplayerOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EAB44527FFEA470071D421 /* MultiplayerOptionsView.swift */; };
+		09EAB44827FFEAC90071D421 /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EAB44727FFEAC90071D421 /* CreateView.swift */; };
+		09EAB44D27FFEF7D0071D421 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 09EAB44C27FFEF7D0071D421 /* FirebaseDatabase */; };
+		09EAB44F27FFEF7D0071D421 /* FirebaseDatabaseSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 09EAB44E27FFEF7D0071D421 /* FirebaseDatabaseSwift-Beta */; };
+		09EAB45127FFEF7D0071D421 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 09EAB45027FFEF7D0071D421 /* FirebaseFirestore */; };
+		09EAB45327FFEF7D0071D421 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 09EAB45227FFEF7D0071D421 /* FirebaseFirestoreCombine-Community */; };
+		09EAB45527FFEF7D0071D421 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 09EAB45427FFEF7D0071D421 /* FirebaseFirestoreSwift-Beta */; };
+		09EAB45727FFEF7D0071D421 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 09EAB45627FFEF7D0071D421 /* FirebaseFunctions */; };
+		09EAB45927FFEF7D0071D421 /* FirebaseFunctionsCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 09EAB45827FFEF7D0071D421 /* FirebaseFunctionsCombine-Community */; };
+		09EAB45B27FFEF7D0071D421 /* FirebaseFunctionsSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 09EAB45A27FFEF7D0071D421 /* FirebaseFunctionsSwift-Beta */; };
+		09EAB45D27FFEF7D0071D421 /* FirebaseInstallations in Frameworks */ = {isa = PBXBuildFile; productRef = 09EAB45C27FFEF7D0071D421 /* FirebaseInstallations */; };
+		09EAB45F27FFEF7D0071D421 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 09EAB45E27FFEF7D0071D421 /* FirebasePerformance */; };
+		09EAB46127FFEF7D0071D421 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 09EAB46027FFEF7D0071D421 /* FirebaseRemoteConfig */; };
+		09EAB46327FFEF7D0071D421 /* FirebaseRemoteConfigSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 09EAB46227FFEF7D0071D421 /* FirebaseRemoteConfigSwift-Beta */; };
+		09EAB46527FFEF7D0071D421 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 09EAB46427FFEF7D0071D421 /* FirebaseStorage */; };
+		09EAB46727FFEF7D0071D421 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 09EAB46627FFEF7D0071D421 /* FirebaseStorageCombine-Community */; };
+		09EAB46927FFEF7D0071D421 /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 09EAB46827FFEF7D0071D421 /* FirebaseStorageSwift-Beta */; };
+		09EAB46C27FFF00A0071D421 /* FirebaseReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EAB46B27FFF00A0071D421 /* FirebaseReference.swift */; };
+		09EAB46E27FFF0240071D421 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EAB46D27FFF0230071D421 /* FirebaseService.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		09A51D0127F3A5FD0033F537 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09A51CE827F3A5FA0033F537 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 09A51CEF27F3A5FA0033F537;
+			remoteInfo = wordleBlitz;
+		};
+		09A51D0B27F3A5FD0033F537 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09A51CE827F3A5FA0033F537 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 09A51CEF27F3A5FA0033F537;
+			remoteInfo = wordleBlitz;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		092D4E2C27FB8DB900046A20 /* GameModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeView.swift; sourceTree = "<group>"; };
+		092D4E3027FBA69800046A20 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		092D4E3227FBAAC300046A20 /* game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = game.swift; sourceTree = "<group>"; };
+		0985EFFA27FFF843002FE9D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		099FC70227FA4E86001729ED /* letterStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = letterStatus.swift; sourceTree = "<group>"; };
+		09A51CF027F3A5FA0033F537 /* wordleBlitz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wordleBlitz.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		09A51CF327F3A5FA0033F537 /* wordleBlitzApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wordleBlitzApp.swift; sourceTree = "<group>"; };
+		09A51CF527F3A5FA0033F537 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		09A51CF727F3A5FC0033F537 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		09A51CFA27F3A5FC0033F537 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		09A51D0027F3A5FD0033F537 /* wordleBlitzTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wordleBlitzTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		09A51D0427F3A5FD0033F537 /* wordleBlitzTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wordleBlitzTests.swift; sourceTree = "<group>"; };
+		09A51D0A27F3A5FD0033F537 /* wordleBlitzUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wordleBlitzUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		09A51D0E27F3A5FD0033F537 /* wordleBlitzUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wordleBlitzUITests.swift; sourceTree = "<group>"; };
+		09A51D1027F3A5FD0033F537 /* wordleBlitzUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wordleBlitzUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		09A51D1F27F3A6980033F537 /* gameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameModel.swift; sourceTree = "<group>"; };
+		09A51D2127F3A6A90033F537 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		09A51D2327F3AB900033F537 /* words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = words.swift; sourceTree = "<group>"; };
+		09ADA3E227FA82C500C30111 /* animatedLetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animatedLetter.swift; sourceTree = "<group>"; };
+		09ADA3E427FA943200C30111 /* SoloView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoloView.swift; sourceTree = "<group>"; };
+		09ADA3E627FA951E00C30111 /* UserStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatsView.swift; sourceTree = "<group>"; };
+		09EAB44127FFC8570071D421 /* oneV1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = oneV1View.swift; sourceTree = "<group>"; };
+		09EAB44327FFCB470071D421 /* ChangeUsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeUsernameView.swift; sourceTree = "<group>"; };
+		09EAB44527FFEA470071D421 /* MultiplayerOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerOptionsView.swift; sourceTree = "<group>"; };
+		09EAB44727FFEAC90071D421 /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
+		09EAB46B27FFF00A0071D421 /* FirebaseReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseReference.swift; sourceTree = "<group>"; };
+		09EAB46D27FFF0230071D421 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		09A51CED27F3A5FA0033F537 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09EAB46127FFEF7D0071D421 /* FirebaseRemoteConfig in Frameworks */,
+				09EAB45927FFEF7D0071D421 /* FirebaseFunctionsCombine-Community in Frameworks */,
+				09EAB44F27FFEF7D0071D421 /* FirebaseDatabaseSwift-Beta in Frameworks */,
+				09EAB45F27FFEF7D0071D421 /* FirebasePerformance in Frameworks */,
+				09EAB45327FFEF7D0071D421 /* FirebaseFirestoreCombine-Community in Frameworks */,
+				09EAB46927FFEF7D0071D421 /* FirebaseStorageSwift-Beta in Frameworks */,
+				09EAB45D27FFEF7D0071D421 /* FirebaseInstallations in Frameworks */,
+				09EAB45B27FFEF7D0071D421 /* FirebaseFunctionsSwift-Beta in Frameworks */,
+				09EAB46327FFEF7D0071D421 /* FirebaseRemoteConfigSwift-Beta in Frameworks */,
+				09EAB46727FFEF7D0071D421 /* FirebaseStorageCombine-Community in Frameworks */,
+				09EAB46527FFEF7D0071D421 /* FirebaseStorage in Frameworks */,
+				09EAB45527FFEF7D0071D421 /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				09EAB45727FFEF7D0071D421 /* FirebaseFunctions in Frameworks */,
+				09EAB44D27FFEF7D0071D421 /* FirebaseDatabase in Frameworks */,
+				09EAB45127FFEF7D0071D421 /* FirebaseFirestore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09A51CFD27F3A5FD0033F537 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09A51D0727F3A5FD0033F537 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		092D4E2E27FBA42300046A20 /* solo */ = {
+			isa = PBXGroup;
+			children = (
+				09ADA3E427FA943200C30111 /* SoloView.swift */,
+			);
+			path = solo;
+			sourceTree = "<group>";
+		};
+		092D4E2F27FBA65100046A20 /* core views */ = {
+			isa = PBXGroup;
+			children = (
+				09ADA3E627FA951E00C30111 /* UserStatsView.swift */,
+				09A51D2127F3A6A90033F537 /* GameView.swift */,
+				09EAB44327FFCB470071D421 /* ChangeUsernameView.swift */,
+			);
+			path = "core views";
+			sourceTree = "<group>";
+		};
+		092D4E3427FBAD8000046A20 /* core structs */ = {
+			isa = PBXGroup;
+			children = (
+				09A51D2327F3AB900033F537 /* words.swift */,
+				092D4E3227FBAAC300046A20 /* game.swift */,
+				092D4E3027FBA69800046A20 /* User.swift */,
+				099FC70227FA4E86001729ED /* letterStatus.swift */,
+			);
+			path = "core structs";
+			sourceTree = "<group>";
+		};
+		09A51CE727F3A5FA0033F537 = {
+			isa = PBXGroup;
+			children = (
+				09A51CF227F3A5FA0033F537 /* wordleBlitz */,
+				09A51D0327F3A5FD0033F537 /* wordleBlitzTests */,
+				09A51D0D27F3A5FD0033F537 /* wordleBlitzUITests */,
+				09A51CF127F3A5FA0033F537 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		09A51CF127F3A5FA0033F537 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				09A51CF027F3A5FA0033F537 /* wordleBlitz.app */,
+				09A51D0027F3A5FD0033F537 /* wordleBlitzTests.xctest */,
+				09A51D0A27F3A5FD0033F537 /* wordleBlitzUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		09A51CF227F3A5FA0033F537 /* wordleBlitz */ = {
+			isa = PBXGroup;
+			children = (
+				0985EFFA27FFF843002FE9D9 /* GoogleService-Info.plist */,
+				09A51CF327F3A5FA0033F537 /* wordleBlitzApp.swift */,
+				09EAB46A27FFEF9D0071D421 /* services */,
+				09A51D1E27F3A66E0033F537 /* models */,
+				09A51D1D27F3A6690033F537 /* views */,
+				09A51CF527F3A5FA0033F537 /* ContentView.swift */,
+				092D4E3427FBAD8000046A20 /* core structs */,
+				09A51CF727F3A5FC0033F537 /* Assets.xcassets */,
+				09ADA3E227FA82C500C30111 /* animatedLetter.swift */,
+				09A51CF927F3A5FC0033F537 /* Preview Content */,
+			);
+			path = wordleBlitz;
+			sourceTree = "<group>";
+		};
+		09A51CF927F3A5FC0033F537 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				09A51CFA27F3A5FC0033F537 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		09A51D0327F3A5FD0033F537 /* wordleBlitzTests */ = {
+			isa = PBXGroup;
+			children = (
+				09A51D0427F3A5FD0033F537 /* wordleBlitzTests.swift */,
+			);
+			path = wordleBlitzTests;
+			sourceTree = "<group>";
+		};
+		09A51D0D27F3A5FD0033F537 /* wordleBlitzUITests */ = {
+			isa = PBXGroup;
+			children = (
+				09A51D0E27F3A5FD0033F537 /* wordleBlitzUITests.swift */,
+				09A51D1027F3A5FD0033F537 /* wordleBlitzUITestsLaunchTests.swift */,
+			);
+			path = wordleBlitzUITests;
+			sourceTree = "<group>";
+		};
+		09A51D1D27F3A6690033F537 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				09EAB44027FFC83A0071D421 /* 1v1 */,
+				092D4E2C27FB8DB900046A20 /* GameModeView.swift */,
+				092D4E2F27FBA65100046A20 /* core views */,
+				092D4E2E27FBA42300046A20 /* solo */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		09A51D1E27F3A66E0033F537 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				09A51D1F27F3A6980033F537 /* gameModel.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		09EAB44027FFC83A0071D421 /* 1v1 */ = {
+			isa = PBXGroup;
+			children = (
+				09EAB44127FFC8570071D421 /* oneV1View.swift */,
+				09EAB44527FFEA470071D421 /* MultiplayerOptionsView.swift */,
+				09EAB44727FFEAC90071D421 /* CreateView.swift */,
+			);
+			path = 1v1;
+			sourceTree = "<group>";
+		};
+		09EAB46A27FFEF9D0071D421 /* services */ = {
+			isa = PBXGroup;
+			children = (
+				09EAB46B27FFF00A0071D421 /* FirebaseReference.swift */,
+				09EAB46D27FFF0230071D421 /* FirebaseService.swift */,
+			);
+			path = services;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		09A51CEF27F3A5FA0033F537 /* wordleBlitz */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09A51D1427F3A5FD0033F537 /* Build configuration list for PBXNativeTarget "wordleBlitz" */;
+			buildPhases = (
+				09A51CEC27F3A5FA0033F537 /* Sources */,
+				09A51CED27F3A5FA0033F537 /* Frameworks */,
+				09A51CEE27F3A5FA0033F537 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = wordleBlitz;
+			packageProductDependencies = (
+				09EAB44C27FFEF7D0071D421 /* FirebaseDatabase */,
+				09EAB44E27FFEF7D0071D421 /* FirebaseDatabaseSwift-Beta */,
+				09EAB45027FFEF7D0071D421 /* FirebaseFirestore */,
+				09EAB45227FFEF7D0071D421 /* FirebaseFirestoreCombine-Community */,
+				09EAB45427FFEF7D0071D421 /* FirebaseFirestoreSwift-Beta */,
+				09EAB45627FFEF7D0071D421 /* FirebaseFunctions */,
+				09EAB45827FFEF7D0071D421 /* FirebaseFunctionsCombine-Community */,
+				09EAB45A27FFEF7D0071D421 /* FirebaseFunctionsSwift-Beta */,
+				09EAB45C27FFEF7D0071D421 /* FirebaseInstallations */,
+				09EAB45E27FFEF7D0071D421 /* FirebasePerformance */,
+				09EAB46027FFEF7D0071D421 /* FirebaseRemoteConfig */,
+				09EAB46227FFEF7D0071D421 /* FirebaseRemoteConfigSwift-Beta */,
+				09EAB46427FFEF7D0071D421 /* FirebaseStorage */,
+				09EAB46627FFEF7D0071D421 /* FirebaseStorageCombine-Community */,
+				09EAB46827FFEF7D0071D421 /* FirebaseStorageSwift-Beta */,
+			);
+			productName = wordleBlitz;
+			productReference = 09A51CF027F3A5FA0033F537 /* wordleBlitz.app */;
+			productType = "com.apple.product-type.application";
+		};
+		09A51CFF27F3A5FD0033F537 /* wordleBlitzTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09A51D1727F3A5FD0033F537 /* Build configuration list for PBXNativeTarget "wordleBlitzTests" */;
+			buildPhases = (
+				09A51CFC27F3A5FD0033F537 /* Sources */,
+				09A51CFD27F3A5FD0033F537 /* Frameworks */,
+				09A51CFE27F3A5FD0033F537 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				09A51D0227F3A5FD0033F537 /* PBXTargetDependency */,
+			);
+			name = wordleBlitzTests;
+			productName = wordleBlitzTests;
+			productReference = 09A51D0027F3A5FD0033F537 /* wordleBlitzTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		09A51D0927F3A5FD0033F537 /* wordleBlitzUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09A51D1A27F3A5FD0033F537 /* Build configuration list for PBXNativeTarget "wordleBlitzUITests" */;
+			buildPhases = (
+				09A51D0627F3A5FD0033F537 /* Sources */,
+				09A51D0727F3A5FD0033F537 /* Frameworks */,
+				09A51D0827F3A5FD0033F537 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				09A51D0C27F3A5FD0033F537 /* PBXTargetDependency */,
+			);
+			name = wordleBlitzUITests;
+			productName = wordleBlitzUITests;
+			productReference = 09A51D0A27F3A5FD0033F537 /* wordleBlitzUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		09A51CE827F3A5FA0033F537 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					09A51CEF27F3A5FA0033F537 = {
+						CreatedOnToolsVersion = 13.3;
+					};
+					09A51CFF27F3A5FD0033F537 = {
+						CreatedOnToolsVersion = 13.3;
+						TestTargetID = 09A51CEF27F3A5FA0033F537;
+					};
+					09A51D0927F3A5FD0033F537 = {
+						CreatedOnToolsVersion = 13.3;
+						TestTargetID = 09A51CEF27F3A5FA0033F537;
+					};
+				};
+			};
+			buildConfigurationList = 09A51CEB27F3A5FA0033F537 /* Build configuration list for PBXProject "wordleBlitz" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 09A51CE727F3A5FA0033F537;
+			packageReferences = (
+				09EAB44B27FFEF7D0071D421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
+			productRefGroup = 09A51CF127F3A5FA0033F537 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				09A51CEF27F3A5FA0033F537 /* wordleBlitz */,
+				09A51CFF27F3A5FD0033F537 /* wordleBlitzTests */,
+				09A51D0927F3A5FD0033F537 /* wordleBlitzUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		09A51CEE27F3A5FA0033F537 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09A51CFB27F3A5FC0033F537 /* Preview Assets.xcassets in Resources */,
+				09A51CF827F3A5FC0033F537 /* Assets.xcassets in Resources */,
+				0985EFFB27FFF843002FE9D9 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09A51CFE27F3A5FD0033F537 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09A51D0827F3A5FD0033F537 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		09A51CEC27F3A5FA0033F537 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09A51CF627F3A5FA0033F537 /* ContentView.swift in Sources */,
+				092D4E2D27FB8DB900046A20 /* GameModeView.swift in Sources */,
+				099FC70327FA4E86001729ED /* letterStatus.swift in Sources */,
+				092D4E3327FBAAC300046A20 /* game.swift in Sources */,
+				09EAB46E27FFF0240071D421 /* FirebaseService.swift in Sources */,
+				09ADA3E527FA943200C30111 /* SoloView.swift in Sources */,
+				09EAB46C27FFF00A0071D421 /* FirebaseReference.swift in Sources */,
+				09ADA3E327FA82C500C30111 /* animatedLetter.swift in Sources */,
+				09A51CF427F3A5FA0033F537 /* wordleBlitzApp.swift in Sources */,
+				09A51D2227F3A6A90033F537 /* GameView.swift in Sources */,
+				09A51D2027F3A6980033F537 /* gameModel.swift in Sources */,
+				09EAB44227FFC8570071D421 /* oneV1View.swift in Sources */,
+				09EAB44827FFEAC90071D421 /* CreateView.swift in Sources */,
+				09A51D2427F3AB900033F537 /* words.swift in Sources */,
+				09ADA3E727FA951E00C30111 /* UserStatsView.swift in Sources */,
+				09EAB44627FFEA470071D421 /* MultiplayerOptionsView.swift in Sources */,
+				09EAB44427FFCB470071D421 /* ChangeUsernameView.swift in Sources */,
+				092D4E3127FBA69800046A20 /* User.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09A51CFC27F3A5FD0033F537 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09A51D0527F3A5FD0033F537 /* wordleBlitzTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09A51D0627F3A5FD0033F537 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09A51D0F27F3A5FD0033F537 /* wordleBlitzUITests.swift in Sources */,
+				09A51D1127F3A5FD0033F537 /* wordleBlitzUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		09A51D0227F3A5FD0033F537 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 09A51CEF27F3A5FA0033F537 /* wordleBlitz */;
+			targetProxy = 09A51D0127F3A5FD0033F537 /* PBXContainerItemProxy */;
+		};
+		09A51D0C27F3A5FD0033F537 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 09A51CEF27F3A5FA0033F537 /* wordleBlitz */;
+			targetProxy = 09A51D0B27F3A5FD0033F537 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		09A51D1227F3A5FD0033F537 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		09A51D1327F3A5FD0033F537 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		09A51D1527F3A5FD0033F537 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"wordleBlitz/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = idk.wordleBlitz;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		09A51D1627F3A5FD0033F537 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"wordleBlitz/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = idk.wordleBlitz;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		09A51D1827F3A5FD0033F537 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = idk.wordleBlitzTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wordleBlitz.app/wordleBlitz";
+			};
+			name = Debug;
+		};
+		09A51D1927F3A5FD0033F537 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = idk.wordleBlitzTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wordleBlitz.app/wordleBlitz";
+			};
+			name = Release;
+		};
+		09A51D1B27F3A5FD0033F537 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = idk.wordleBlitzUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = wordleBlitz;
+			};
+			name = Debug;
+		};
+		09A51D1C27F3A5FD0033F537 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = idk.wordleBlitzUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = wordleBlitz;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		09A51CEB27F3A5FA0033F537 /* Build configuration list for PBXProject "wordleBlitz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09A51D1227F3A5FD0033F537 /* Debug */,
+				09A51D1327F3A5FD0033F537 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09A51D1427F3A5FD0033F537 /* Build configuration list for PBXNativeTarget "wordleBlitz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09A51D1527F3A5FD0033F537 /* Debug */,
+				09A51D1627F3A5FD0033F537 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09A51D1727F3A5FD0033F537 /* Build configuration list for PBXNativeTarget "wordleBlitzTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09A51D1827F3A5FD0033F537 /* Debug */,
+				09A51D1927F3A5FD0033F537 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09A51D1A27F3A5FD0033F537 /* Build configuration list for PBXNativeTarget "wordleBlitzUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09A51D1B27F3A5FD0033F537 /* Debug */,
+				09A51D1C27F3A5FD0033F537 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		09EAB44B27FFEF7D0071D421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		09EAB44C27FFEF7D0071D421 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09EAB44B27FFEF7D0071D421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		09EAB44E27FFEF7D0071D421 /* FirebaseDatabaseSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09EAB44B27FFEF7D0071D421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseDatabaseSwift-Beta";
+		};
+		09EAB45027FFEF7D0071D421 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09EAB44B27FFEF7D0071D421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		09EAB45227FFEF7D0071D421 /* FirebaseFirestoreCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09EAB44B27FFEF7D0071D421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreCombine-Community";
+		};
+		09EAB45427FFEF7D0071D421 /* FirebaseFirestoreSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09EAB44B27FFEF7D0071D421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreSwift-Beta";
+		};
+		09EAB45627FFEF7D0071D421 /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09EAB44B27FFEF7D0071D421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
+		09EAB45827FFEF7D0071D421 /* FirebaseFunctionsCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09EAB44B27FFEF7D0071D421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFunctionsCombine-Community";
+		};
+		09EAB45A27FFEF7D0071D421 /* FirebaseFunctionsSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09EAB44B27FFEF7D0071D421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFunctionsSwift-Beta";
+		};
+		09EAB45C27FFEF7D0071D421 /* FirebaseInstallations */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09EAB44B27FFEF7D0071D421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseInstallations;
+		};
+		09EAB45E27FFEF7D0071D421 /* FirebasePerformance */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09EAB44B27FFEF7D0071D421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebasePerformance;
+		};
+		09EAB46027FFEF7D0071D421 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09EAB44B27FFEF7D0071D421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
+		09EAB46227FFEF7D0071D421 /* FirebaseRemoteConfigSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09EAB44B27FFEF7D0071D421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseRemoteConfigSwift-Beta";
+		};
+		09EAB46427FFEF7D0071D421 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09EAB44B27FFEF7D0071D421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		09EAB46627FFEF7D0071D421 /* FirebaseStorageCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09EAB44B27FFEF7D0071D421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseStorageCombine-Community";
+		};
+		09EAB46827FFEF7D0071D421 /* FirebaseStorageSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09EAB44B27FFEF7D0071D421 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseStorageSwift-Beta";
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 09A51CE827F3A5FA0033F537 /* Project object */;
+}
