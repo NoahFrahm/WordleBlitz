@@ -13,6 +13,10 @@ struct oneV1View: View {
     @State var showStats: Bool = false
     @State var ActiveGame: GameView = GameView(gml: gameModel())
     
+    init(Mygml: gameModel) {
+        self.ActiveGame = GameView(gml: Mygml)
+    }
+    
     
     init(){}
     
@@ -40,9 +44,10 @@ struct oneV1View: View {
                         .padding([.bottom], 50)
                     }
                 }
-        }.onAppear{
-            ActiveGame.gm.getTheGame()
         }
+//        .onAppear{
+//            ActiveGame.gm.getTheGame()
+//        }
     }
 }
 

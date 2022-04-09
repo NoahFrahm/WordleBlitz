@@ -27,6 +27,8 @@ struct MultiplayerOptionsView: View {
                     .padding([.bottom], 50)
                 OptionButtonView(text: "CREATE GAME",create: $create)
                 OptionButtonView(text: "JOIN GAME",create: $create)
+                OptionButtonView(text: "JOIN GAME",create: $create)
+
 //                    .padding([.bottom], 100)
 //                OptionButtonView(text: "HOW TO PLAY",create: $create)
                 Spacer()

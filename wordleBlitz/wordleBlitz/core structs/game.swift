@@ -27,12 +27,12 @@ struct gameObj: Codable {
     var solutionSet: [String] = ["CLOCK", "TIMED", "TRAIN"]
 //    [String](repeating: 0, count: 5)
     
-
+    var play: Bool = false
     //track guess count to calculate this
-    var winningPlayerId: String
+//    var winningPlayerId: String
     
     //player IDs for rematch
-    var rematchPlayerId: [String]
+//    var rematchPlayerId: [String]
     
 //    guess tracking for spectator view (experimental to be added later)
 //    var guess: [String: String] = [String: String]()

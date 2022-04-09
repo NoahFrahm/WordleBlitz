@@ -12,6 +12,7 @@ struct GameView: View {
     @ObservedObject var gm: gameModel
 //    = gameModel(solution: "clock")
     @State var roundOver: Bool = false
+    @State var badSpell: Bool = false
     
     init(gml: gameModel) {
         self.gm = gml
@@ -63,6 +64,25 @@ struct GameView: View {
                         roundOver = true
                     }
                 }
+            }
+            
+            if badSpell {
+                VStack{
+                    ZStack{
+                        Rectangle()
+                            .foregroundColor(.black)
+                            .frame(width: 130, height: 50, alignment: .center)
+                        Text("INVALID WORD")
+                            .foregroundColor(.white)
+                    }.padding([.top], 30)
+                    
+                    Spacer()
+                }
+            }
+        }.onChange(of: gm.misSpellNotifier) { _ in
+            badSpell = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                badSpell = false
             }
         }
     }

@@ -19,7 +19,7 @@ struct GameModeView: View {
                 NavigationLink(destination: SoloView().navigationBarBackButtonHidden(true).navigationBarHidden(true), isActive: $gameMode[0]) {
                     EmptyView()
                 }
-                NavigationLink(destination: oneV1View().navigationBarBackButtonHidden(true).navigationBarHidden(true), isActive: $gameMode[1]) {
+                NavigationLink(destination: MultiplayerOptionsView().navigationBarBackButtonHidden(true).navigationBarHidden(true), isActive: $gameMode[1]) {
                     EmptyView()
                 }
                 

@@ -32,10 +32,9 @@ class gameModel: ObservableObject {
     @Published var solution: String = words[Int.random(in: 0..<words.count)]
     //this one though
     @Published var freqs: [Int] = [0, 0, 0, 0, 0, 0]
+    @Published var misSpellNotifier = false
     
     private var cancellables: Set<AnyCancellable> = []
-
-
 
 //    let defaultKeyColor: Color = Color("lightgray")
 //    let wrongKeyColor: Color = .gray
@@ -161,6 +160,7 @@ class gameModel: ObservableObject {
         
     }
     
+    
     //MARK: - Firebase
     func getTheGame() {
         FirebaseService.shared.startGame(with: currentUser.id)
@@ -228,14 +228,43 @@ class gameModel: ObservableObject {
             _ = typedOut.popLast()
         }
     }
+    
+    //checks word spelling
+    func isMispelled() -> Bool {
+        var word = ""
+        
+        for letr in self.typedOut {
+            word += letr.lowercased()
+        }
+        
+        if word.count < 5 {return false}
+        
+        let checker = UITextChecker()
+        let range = NSRange(location: 0, length: word.utf16.count)
+        let misspelledRange = checker.rangeOfMisspelledWord(
+            in: word,
+            range: range,
+            startingAt: 0,
+            wrap: false,
+            language: "en"
+        )
+        return misspelledRange.location != NSNotFound
+    }
 
     
     // checks guess and recolors keys appropriately
     func enter() {
-        if self.typedOut.count != 5 || self.guesses.count == self.maxGuesses { return }
+        let mispelled = isMispelled()
+        print(mispelled)
+        
+        if mispelled {
+            misSpellNotifier.toggle()
+        }
+        
+        if self.typedOut.count != 5 || self.guesses.count == self.maxGuesses || mispelled { return }
         
         let colorKey = self.checkGuess(guess: self.typedOut)
-        print(colorKey)
+//        print(colorKey)
         
         //this for loop decodes color key and assigns new key/text colors accordingly
         for index in 0..<self.typedOut.count {

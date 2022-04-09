@@ -80,7 +80,15 @@ final class FirebaseService: ObservableObject {
     
     func createNewGame(with userId: String) {
 //        creates a new game object
-        self.game = gameObj(id: UUID().uuidString, host: "place holder 1", players: ["place holder 1"], guessCount: [String: Int](), solutionSet: [], winningPlayerId: "", rematchPlayerId: [])
+        
+//        make 3 random word indices here
+        var set = Set<Int>()
+        while set.count < 3 {
+            set.insert(Int.random(in: 0...words.count))
+        }
+        let indices = Array(set)
+        
+        self.game = gameObj(id: UUID().uuidString, host: "place holder 1", players: ["place holder 1"], guessCount: [String: Int](), solutionSet: [words[indices[0]], words[indices[1]], words[indices[2]]])
         self.createOnlineGame()
         self.listenForGameChanges()
     }
