@@ -1,18 +1,19 @@
 //
-//  CreateView.swift
+//  JoinView.swift
 //  wordleBlitz
 //
-//  Created by Noah Frahm on 4/8/22.
+//  Created by Noah Frahm on 4/9/22.
 //
 
 import SwiftUI
 
-struct CreateView: View {
-    
+struct JoinView: View {
     @State var play: Bool = false
     @State var players: [String] = ["Ronald", "Bob", "Harry"]
     @State var confirmQuit: Bool = false
-    @State var gm: gameModel = gameModel()
+//    make this passed arg so that it doesn't reload when we modify state here
+    @State var gm: gameModel
+//    = gameModel()
 
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -29,27 +30,28 @@ struct CreateView: View {
                                 $play){
                     EmptyView()
                 }
-                
-//                Text()
-                
-                Text("Game Code: " + gameCode)
+                                
+                Text("Active Games")
                     .font(.title)
-                
+//                LazyVGrid{
+//
+//                }
+
                 List{
-                    let playerCount = gm.game?.players.count ?? 0
-                    Section(playerCount == 0 ? "Waiting on Players" : "\(playerCount) Players"){
-                    if gm.game == nil {
-                        ProgressView()
-                    }
-                    else {
-                        ForEach(gm.game?.players ?? ["no game"], id: \.self) { player in
-                            HStack{
-                                Text(player)
-                            }
-                        }
-                    }
-                }.font(.title3)
-                
+//                    let playerCount = gm.game?.players.count ?? 0
+//                    Section(playerCount == 0 ? "Waiting on Players" : "\(playerCount) Players"){
+//                    if gm.game == nil {
+//                        ProgressView()
+//                    }
+//                    else {
+//                        ForEach(gm.game?.players ?? ["no game"], id: \.self) { player in
+//                            HStack{
+//                                Text(player)
+//                            }
+//                        }
+//                    }
+//                }.font(.title3)
+
                 Section{
                     Button(action: {
                         play = true
@@ -59,7 +61,7 @@ struct CreateView: View {
                             .font(.title2)
                     }
                 }
-                
+
                 Button(action: {confirmQuit = true}) {
                     Text("Quit")
                         .foregroundColor(.red)
@@ -70,9 +72,7 @@ struct CreateView: View {
                 
             }.alert(isPresented: $confirmQuit) {
                 Alert(title: Text("Quit Game?"),
-                
                 primaryButton: .destructive(Text("Yes")) {
-    //                add code to remove from game
                     self.presentationMode.wrappedValue.dismiss()
                     print("Deleting...")
                 },
@@ -82,14 +82,20 @@ struct CreateView: View {
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
-        }.onAppear{
-            gm.getTheGame()
         }
+        .onAppear{
+            gm.getOpenGames()
+            print("appeared")
+        }
+//        .task{
+////            var value = await
+//            gm.getOpenGames()
+////            print("values: \(value)")
+//        }
     }
 }
-
-struct CreateView_Previews: PreviewProvider {
+struct JoinView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateView()
+        JoinView(gm: gameModel())
     }
 }

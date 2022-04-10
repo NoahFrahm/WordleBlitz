@@ -40,7 +40,7 @@
 		09EAB44227FFC8570071D421 /* oneV1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EAB44127FFC8570071D421 /* oneV1View.swift */; };
 		09EAB44427FFCB470071D421 /* ChangeUsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EAB44327FFCB470071D421 /* ChangeUsernameView.swift */; };
 		09EAB44627FFEA470071D421 /* MultiplayerOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EAB44527FFEA470071D421 /* MultiplayerOptionsView.swift */; };
-		09EAB44827FFEAC90071D421 /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EAB44727FFEAC90071D421 /* CreateView.swift */; };
+		09EAB44827FFEAC90071D421 /* HostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EAB44727FFEAC90071D421 /* HostView.swift */; };
 		09EAB44D27FFEF7D0071D421 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 09EAB44C27FFEF7D0071D421 /* FirebaseDatabase */; };
 		09EAB44F27FFEF7D0071D421 /* FirebaseDatabaseSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 09EAB44E27FFEF7D0071D421 /* FirebaseDatabaseSwift-Beta */; };
 		09EAB45127FFEF7D0071D421 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 09EAB45027FFEF7D0071D421 /* FirebaseFirestore */; };
@@ -58,7 +58,7 @@
 		09EAB46927FFEF7D0071D421 /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 09EAB46827FFEF7D0071D421 /* FirebaseStorageSwift-Beta */; };
 		09EAB46C27FFF00A0071D421 /* FirebaseReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EAB46B27FFF00A0071D421 /* FirebaseReference.swift */; };
 		09EAB46E27FFF0240071D421 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EAB46D27FFF0230071D421 /* FirebaseService.swift */; };
-		09EC591E2800F73000A09D82 /* GameSetUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EC591D2800F73000A09D82 /* GameSetUp.swift */; };
+		09EABE6128026F0200225B3A /* JoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EABE6028026F0200225B3A /* JoinView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,10 +103,10 @@
 		09EAB44127FFC8570071D421 /* oneV1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = oneV1View.swift; sourceTree = "<group>"; };
 		09EAB44327FFCB470071D421 /* ChangeUsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeUsernameView.swift; sourceTree = "<group>"; };
 		09EAB44527FFEA470071D421 /* MultiplayerOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerOptionsView.swift; sourceTree = "<group>"; };
-		09EAB44727FFEAC90071D421 /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
+		09EAB44727FFEAC90071D421 /* HostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostView.swift; sourceTree = "<group>"; };
 		09EAB46B27FFF00A0071D421 /* FirebaseReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseReference.swift; sourceTree = "<group>"; };
 		09EAB46D27FFF0230071D421 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
-		09EC591D2800F73000A09D82 /* GameSetUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSetUp.swift; sourceTree = "<group>"; };
+		09EABE6028026F0200225B3A /* JoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,8 +276,8 @@
 			children = (
 				09EAB44127FFC8570071D421 /* oneV1View.swift */,
 				09EAB44527FFEA470071D421 /* MultiplayerOptionsView.swift */,
-				09EAB44727FFEAC90071D421 /* CreateView.swift */,
-				09EC591D2800F73000A09D82 /* GameSetUp.swift */,
+				09EAB44727FFEAC90071D421 /* HostView.swift */,
+				09EABE6028026F0200225B3A /* JoinView.swift */,
 			);
 			path = 1v1;
 			sourceTree = "<group>";
@@ -463,16 +463,16 @@
 				09ADA3E527FA943200C30111 /* SoloView.swift in Sources */,
 				09EAB46C27FFF00A0071D421 /* FirebaseReference.swift in Sources */,
 				09ADA3E327FA82C500C30111 /* animatedLetter.swift in Sources */,
+				09EABE6128026F0200225B3A /* JoinView.swift in Sources */,
 				09A51CF427F3A5FA0033F537 /* wordleBlitzApp.swift in Sources */,
 				09A51D2227F3A6A90033F537 /* GameView.swift in Sources */,
 				09A51D2027F3A6980033F537 /* gameModel.swift in Sources */,
 				09EAB44227FFC8570071D421 /* oneV1View.swift in Sources */,
-				09EAB44827FFEAC90071D421 /* CreateView.swift in Sources */,
+				09EAB44827FFEAC90071D421 /* HostView.swift in Sources */,
 				09A51D2427F3AB900033F537 /* words.swift in Sources */,
 				09ADA3E727FA951E00C30111 /* UserStatsView.swift in Sources */,
 				09EAB44627FFEA470071D421 /* MultiplayerOptionsView.swift in Sources */,
 				09EAB44427FFCB470071D421 /* ChangeUsernameView.swift in Sources */,
-				09EC591E2800F73000A09D82 /* GameSetUp.swift in Sources */,
 				092D4E3127FBA69800046A20 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

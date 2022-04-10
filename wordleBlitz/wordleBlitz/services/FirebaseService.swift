@@ -9,6 +9,7 @@ import Foundation
 import FirebaseFirestoreSwift
 import Firebase
 import Combine
+import SwiftUI
 
 
 final class FirebaseService: ObservableObject {
@@ -16,6 +17,8 @@ final class FirebaseService: ObservableObject {
     static let shared = FirebaseService()
     
     @Published var game: gameObj!
+    @Published var openGames: [gameObj] = []
+
     
     init() { }
     
@@ -29,11 +32,50 @@ final class FirebaseService: ObservableObject {
         }
     }
     
-    func startGame(with userId: String) {
+    func printGames() {
+        print("open games \(self.openGames)")
+    }
+    
+    func getWhatIneed() {
+        self.fetchAllOpenGames(printGames)
+    }
+
+    //get all games on firebase
+    func fetchAllOpenGames(_ completion: @escaping () -> ()) {
 //        check if there is a game to join, if not we create a new game
 //        if yes we join and start listening to changes for the game
-        
+
 //        find game with no second player where user isnt first player
+        FirebaseReference(.Game).whereField("play", isEqualTo: false).getDocuments {
+            querySnapshot, error in
+//            print("we have a game")
+
+            if error != nil {
+                print("Error starting game", error?.localizedDescription ?? "wonky")
+                return
+            }
+            for doc in querySnapshot!.documents {
+//                print("\(doc.data().keys)")
+//                print("here we are today")
+                let myGame = try? doc.data(as: gameObj.self)
+                if myGame != nil {
+                    self.openGames.append(myGame!)
+                }
+            }
+            completion()
+            
+//            print("games here inner \(self.openGames)")
+
+        }
+//        print("games here outer \(self.openGames)")
+
+    }
+    
+    func startGame(with userId: String) {
+//      check if there is a game to join, if not we create a new game
+//      if yes we join and start listening to changes for the game
+        
+//      find game with no second player where user isnt first player
         FirebaseReference(.Game).whereField("player2Id", isEqualTo: "").whereField("player1Id", isNotEqualTo: userId).getDocuments {
             querySnapshot, error in
             
@@ -94,7 +136,6 @@ final class FirebaseService: ObservableObject {
     }
     
     func quitTheGame() {
-//
         guard game != nil else { return }
         FirebaseReference(.Game).document(self.game.id).delete()
     }

@@ -9,25 +9,32 @@ import SwiftUI
 
 struct MultiplayerOptionsView: View {
      
-    @State var create: Bool = false
+    @State var create: [Bool] = [false, false]
     
     var body: some View {
         NavigationView{
             VStack(alignment: .center, spacing: 20){
-                NavigationLink(destination: CreateView()
+                NavigationLink(destination: HostView()
                                 .navigationBarTitle("")
                                 .navigationBarHidden(true)
                                 .navigationBarBackButtonHidden(true)
-                    , isActive: $create) {
+                    , isActive: $create[0]) {
+                    EmptyView()
+                }
+                NavigationLink(destination: JoinView(gm: gameModel())
+                                .navigationBarTitle("")
+                                .navigationBarHidden(true)
+                                .navigationBarBackButtonHidden(true)
+                    , isActive: $create[1]) {
                     EmptyView()
                 }
                 Spacer()
                 Image(systemName: "gamecontroller.fill")
                     .font(.system(size: 200))
                     .padding([.bottom], 50)
-                OptionButtonView(text: "CREATE GAME",create: $create)
-                OptionButtonView(text: "JOIN GAME",create: $create)
-                OptionButtonView(text: "JOIN GAME",create: $create)
+                OptionButtonView(text: "CREATE GAME",create: $create[0])
+                OptionButtonView(text: "JOIN GAME",create: $create[1])
+                OptionButtonView(text: "JOIN GAME",create: $create[1])
 
 //                    .padding([.bottom], 100)
 //                OptionButtonView(text: "HOW TO PLAY",create: $create)

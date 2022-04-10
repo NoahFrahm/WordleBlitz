@@ -171,6 +171,19 @@ class gameModel: ObservableObject {
             .store(in: &cancellables)
     }
     
+    //returns arr of games
+    func getOpenGames() {
+        FirebaseService.shared.getWhatIneed()
+//        Task {
+//            FirebaseService.shared.fetchAllOpenGames()
+//            print("second call \(FirebaseService.shared.openGames)")
+
+//        }
+        print("second call \(FirebaseService.shared.openGames)")
+
+//        print("second call \(FirebaseService.shared.openGames)")
+    }
+    
     
     
     //MARK: - game functions
