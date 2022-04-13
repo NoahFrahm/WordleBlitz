@@ -12,8 +12,7 @@ struct HostView: View {
     @State var play: Bool = false
     @State var players: [String] = ["Ronald", "Bob", "Harry"]
     @State var confirmQuit: Bool = false
-    @State var gm: gameModel = gameModel()
-
+    @State var gm: gameModel
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
@@ -22,19 +21,14 @@ struct HostView: View {
     var body: some View {
         NavigationView{
             VStack{
-                NavigationLink(destination: oneV1View(Mygml: gm)
+                NavigationLink(destination: oneV1View(ActiveGame: GameView(gml: gm))
                                 .navigationBarTitle("")
                                 .navigationBarBackButtonHidden(true)
                                 .navigationBarHidden(true), isActive:
                                 $play){
                     EmptyView()
                 }
-                
-//                Text()
-                
-                Text("Game Code: " + gameCode)
-                    .font(.title)
-                
+
                 List{
                     let playerCount = gm.game?.players.count ?? 0
                     Section(playerCount == 0 ? "Waiting on Players" : "\(playerCount) Players"){
@@ -42,30 +36,38 @@ struct HostView: View {
                         ProgressView()
                     }
                     else {
-                        ForEach(gm.game?.players ?? ["no game"], id: \.self) { player in
-                            HStack{
-                                Text(player)
+                        ForEach(gm.game?.players.sorted(by: >) ?? [("NA","NA")], id: \.key) { id, name  in
+                            if id != gm.currentUser.id {
+                                HStack{
+                                    Text(name)
+                                }
                             }
                         }
                     }
                 }.font(.title3)
                 
-                Section{
-                    Button(action: {
-                        play = true
-                        gm.game?.play = true
-                    }) {
-                        Text("Start Game")
-                            .font(.title2)
+                    Section{
+                        Button(action: {
+                            if gm.game != nil {
+                                // move into the game model
+//                                gm.solution = gm.game!.solutionSet[0]
+//                                gm.solutionSet = gm.game!.solutionSet
+                                play = true
+                                gm.game?.play = true
+                            }
+                            
+                        }) {
+                            Text("Start Game")
+                                .font(.title2)
+                        }
                     }
+                    
+                    Button(action: {confirmQuit = true}) {
+                        Text("Quit")
+                            .foregroundColor(.red)
+                            .font(.title2)
                 }
-                
-                Button(action: {confirmQuit = true}) {
-                    Text("Quit")
-                        .foregroundColor(.red)
-                        .font(.title2)
                 }
-            }
                     .listStyle(InsetGroupedListStyle())
                 
             }.alert(isPresented: $confirmQuit) {
@@ -90,6 +92,6 @@ struct HostView: View {
 
 struct CreateView_Previews: PreviewProvider {
     static var previews: some View {
-        HostView()
+        HostView(gm: gameModel())
     }
 }

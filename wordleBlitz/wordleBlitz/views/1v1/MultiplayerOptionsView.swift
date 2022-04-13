@@ -11,10 +11,12 @@ struct MultiplayerOptionsView: View {
      
     @State var create: [Bool] = [false, false]
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     var body: some View {
         NavigationView{
             VStack(alignment: .center, spacing: 20){
-                NavigationLink(destination: HostView()
+                NavigationLink(destination: HostView(gm: gameModel())
                                 .navigationBarTitle("")
                                 .navigationBarHidden(true)
                                 .navigationBarBackButtonHidden(true)
@@ -34,10 +36,22 @@ struct MultiplayerOptionsView: View {
                     .padding([.bottom], 50)
                 OptionButtonView(text: "CREATE GAME",create: $create[0])
                 OptionButtonView(text: "JOIN GAME",create: $create[1])
-                OptionButtonView(text: "JOIN GAME",create: $create[1])
-
-//                    .padding([.bottom], 100)
-//                OptionButtonView(text: "HOW TO PLAY",create: $create)
+                
+//                OptionButtonView(text: "BACK",create: $create[1])
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }) {
+                    Text("BACK")
+                        .frame(width: 200, height: 20, alignment: .center)
+                        .font(.system(size: 18))
+                        .padding()
+                        .foregroundColor(.black)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 25)
+                                .stroke(Color.black, lineWidth: 2)
+                        )
+                }
+                
                 Spacer()
             }
         }

@@ -11,22 +11,25 @@ struct oneV1View: View {
     
     @State var score: Int = 0
     @State var showStats: Bool = false
-    @State var ActiveGame: GameView = GameView(gml: gameModel())
-    
-    init(Mygml: gameModel) {
-        self.ActiveGame = GameView(gml: Mygml)
-    }
-    
-    
-    init(){}
-    
-    init(solutionSet: [String]) {
-        ActiveGame = GameView(gml: gameModel(solution: "clock"))
-    }
-    
+    @State var ActiveGame: GameView
     var userName: String {
         return ActiveGame.gm.currentUser.name
     }
+    
+//    init() {
+////        self.init(Mygml: gameModel())
+//        self.ActiveGame = GameView(gml: gameModel())
+//    }
+//
+//    init(Mygml: gameModel) {
+//        self.ActiveGame = GameView(gml: Mygml)
+//        self.userName = Mygml.currentUser.name
+//    }
+//
+//    init(solutionSet: [String]) {
+//        self.init(Mygml: gameModel(solution: solutionSet[0], solutionSet: solutionSet))
+//    }
+    
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -40,14 +43,11 @@ struct oneV1View: View {
                 }.padding([.bottom], 10)
                 
                 if showStats {
-                    UserStatsView(endVals: ActiveGame.gm.freqs, show: $showStats)
+                    UserStatsView(endVals: (ActiveGame.gm.freqs), show: $showStats)
                         .padding([.bottom], 50)
                     }
                 }
         }
-//        .onAppear{
-//            ActiveGame.gm.getTheGame()
-//        }
     }
 }
 
@@ -65,7 +65,7 @@ struct TopBarMultiplayer: View {
             Spacer()
             Button(action: {                     self.presentationMode.wrappedValue.dismiss()
             }) {
-                Text("BACK")
+                Text("QUIT")
                     .foregroundColor(.black)
                     .font(.title2)
             }
@@ -89,8 +89,11 @@ struct TopBarMultiplayer: View {
     }
 }
 
+
 struct oneV1View_Previews: PreviewProvider {
     static var previews: some View {
-        oneV1View()
+        oneV1View(ActiveGame: GameView(gml: gameModel(solution: "clock", solutionSet:  ["clock", "jazzy", "train"])))
+
+//        oneV1View(solutionSet: ["clock", "jazzy", "train"])
     }
 }

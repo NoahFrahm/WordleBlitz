@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct JoinView: View {
-    @State var play: Bool = false
     @State var players: [String] = ["Ronald", "Bob", "Harry"]
+    
+    @State var play: Bool = false
     @State var confirmQuit: Bool = false
+    @State var askJoinGame: Bool = false
+    @State var selectedGame: gameObj? = nil
+    @State var joinedGame: Bool = false
+//    @ObservedObject var FireBase = FirebaseService
+//    @State var refreshed = FirebaseService.shared.fetchComplete
+    @ObservedObject var fire: FirebaseService = FirebaseService.shared
 //    make this passed arg so that it doesn't reload when we modify state here
     @State var gm: gameModel
 //    = gameModel()
@@ -23,7 +30,7 @@ struct JoinView: View {
     var body: some View {
         NavigationView{
             VStack{
-                NavigationLink(destination: oneV1View(Mygml: gm)
+                NavigationLink(destination: HostView(gm: gm)
                                 .navigationBarTitle("")
                                 .navigationBarBackButtonHidden(true)
                                 .navigationBarHidden(true), isActive:
@@ -33,48 +40,62 @@ struct JoinView: View {
                                 
                 Text("Active Games")
                     .font(.title)
-//                LazyVGrid{
-//
-//                }
 
                 List{
-//                    let playerCount = gm.game?.players.count ?? 0
-//                    Section(playerCount == 0 ? "Waiting on Players" : "\(playerCount) Players"){
-//                    if gm.game == nil {
-//                        ProgressView()
-//                    }
-//                    else {
-//                        ForEach(gm.game?.players ?? ["no game"], id: \.self) { player in
-//                            HStack{
-//                                Text(player)
-//                            }
-//                        }
-//                    }
-//                }.font(.title3)
+                    if !fire.fetchComplete {
+                        Section("Looking for open games") {
+                            ProgressView()
+                        }.font(.title3)
+                    }
+                    else {
+                        let playerCount = FirebaseService.shared.openGames.count
+                        
+                        Section("\(playerCount) Open Games") {
+                        ForEach(FirebaseService.shared.openGames, id: \.id) { game in
+                            Button(action: {
+                                askJoinGame = true
+                                selectedGame = game
+                            }) {
+                                Text("\(game.name)'s Game")
+                                    .font(.title2)
+                            }
+                        }
+                    }.font(.title3)
+                    }
 
-                Section{
                     Button(action: {
-                        play = true
-                        gm.game?.play = true
+                        fire.fetchComplete = false
+                        gm.getOpenGames()
                     }) {
-                        Text("Start Game")
+                        Text("Refresh")
+                            .foregroundColor(.blue)
                             .font(.title2)
                     }
                 }
-
-                Button(action: {confirmQuit = true}) {
-                    Text("Quit")
-                        .foregroundColor(.red)
-                        .font(.title2)
-                }
-            }
-                    .listStyle(InsetGroupedListStyle())
+                .listStyle(InsetGroupedListStyle())
                 
-            }.alert(isPresented: $confirmQuit) {
-                Alert(title: Text("Quit Game?"),
+                Button("BACK") {
+                    presentationMode.wrappedValue.dismiss()
+                }
+                Spacer()
+                
+            }
+            .alert(isPresented: $askJoinGame) {
+                Alert(title: Text("Join This Game?"),
                 primaryButton: .destructive(Text("Yes")) {
-                    self.presentationMode.wrappedValue.dismiss()
-                    print("Deleting...")
+                    //we need to wait for join game
+                        gm.joinGame(host: selectedGame?.id ?? "no host")
+                        print("1")
+//                        if gm.game != nil {
+//                            // move into the game model
+//                            print("2")
+//                            gm.solution = gm.game!.solutionSet[0]
+//                            gm.solutionSet = gm.game!.solutionSet
+//                            play = true
+//                            gm.game?.play = true
+//                        }
+                    play = true
+//                        play = true
                 },
                 secondaryButton: .cancel(Text("No"))
                 )
@@ -87,13 +108,19 @@ struct JoinView: View {
             gm.getOpenGames()
             print("appeared")
         }
-//        .task{
-////            var value = await
-//            gm.getOpenGames()
-////            print("values: \(value)")
-//        }
     }
 }
+
+//            .alert(isPresented: $confirmQuit) {
+//                Alert(title: Text("Quit Game?"),
+//                primaryButton: .destructive(Text("Yes")) {
+//                    self.presentationMode.wrappedValue.dismiss()
+//                    print("Deleting...")
+//                },
+//                secondaryButton: .cancel(Text("No"))
+//                )
+//            }
+
 struct JoinView_Previews: PreviewProvider {
     static var previews: some View {
         JoinView(gm: gameModel())

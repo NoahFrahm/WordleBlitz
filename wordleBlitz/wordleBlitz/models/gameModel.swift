@@ -26,10 +26,12 @@ class gameModel: ObservableObject {
     @Published var guesses: [[String]] = []
     @Published var typedOut: [String] = []
     @Published var gameOver: Bool = false
+    @Published var solutionSetDone: Bool = false
     
     //the view doesnt need to know about these
     @Published var solutionSet = words
     @Published var solution: String = words[Int.random(in: 0..<words.count)]
+    
     //this one though
     @Published var freqs: [Int] = [0, 0, 0, 0, 0, 0]
     @Published var misSpellNotifier = false
@@ -70,8 +72,12 @@ class gameModel: ObservableObject {
         self.init(solution: words[Int.random(in: 0..<words.count)])
     }
     
+    convenience init(solution: String) {
+        self.init(solution: solution, solutionSet: words)
+    }
     
-    init(solution: String) {
+    
+    init(solution: String, solutionSet: [String]) {
         
         //this pulls user from user defaults
         retrieveUser()
@@ -85,6 +91,11 @@ class gameModel: ObservableObject {
         
         freqs = self.currentUser.stats
         
+        self.solution = solution
+        self.solutionSet = solutionSet
+
+        print(self.solution)
+        print(self.solutionSet[0], self.solutionSet[1], self.solutionSet[2])
         let topRow = ["q","w","e","r","t","y","u","i","o","p"]
         let middleRow = ["a","s","d","f","g","h","j","k","l"]
         let bottomRow = ["z","x","c","v","b","n","m"]
@@ -98,7 +109,6 @@ class gameModel: ObservableObject {
         for letter in bottomRow {
             self.keys[letter] = key(name: letter)
         }
-        self.solution = solution
     }
     
     
@@ -163,7 +173,7 @@ class gameModel: ObservableObject {
     
     //MARK: - Firebase
     func getTheGame() {
-        FirebaseService.shared.startGame(with: currentUser.id)
+        FirebaseService.shared.startGame(with: currentUser.id, nickname: currentUser.name)
         
 //        fetch game from firebase and store it in gameviewmodel to display
         FirebaseService.shared.$game
@@ -173,15 +183,16 @@ class gameModel: ObservableObject {
     
     //returns arr of games
     func getOpenGames() {
+        FirebaseService.shared.fetchComplete = false
         FirebaseService.shared.getWhatIneed()
-//        Task {
-//            FirebaseService.shared.fetchAllOpenGames()
-//            print("second call \(FirebaseService.shared.openGames)")
-
-//        }
         print("second call \(FirebaseService.shared.openGames)")
-
-//        print("second call \(FirebaseService.shared.openGames)")
+    }
+    
+    func joinGame(host: String) {
+        print("host to join \(host)")
+        Task {
+            await FirebaseService.shared.joinGame(with: host, userId: self.currentUser.id, userName: self.currentUser.name)
+        }
     }
     
     
@@ -189,8 +200,10 @@ class gameModel: ObservableObject {
     //MARK: - game functions
     //fetches a new word from solution set, specifically base on solutionindex, and makes it the new solution
     func newWord() {
-        self.solution = self.solutionSet[self.solutionIndex]
-        self.solutionIndex += 1
+        if self.solutionIndex < (solutionSet.count - 1) {
+            self.solutionIndex += 1
+            self.solution = self.solutionSet[self.solutionIndex]
+        }
     }
     
     
@@ -278,9 +291,12 @@ class gameModel: ObservableObject {
         
         let colorKey = self.checkGuess(guess: self.typedOut)
 //        print(colorKey)
+        print(colorKey, typedOut)
+
         
         //this for loop decodes color key and assigns new key/text colors accordingly
         for index in 0..<self.typedOut.count {
+            
             let myKey = self.keys[self.typedOut[index].lowercased()]
 //            var yu = self.keys[self.typedOut[index]]
 //            print(myKey, yu)
@@ -290,9 +306,9 @@ class gameModel: ObservableObject {
             switch colorKey[index]{
                 case .wrong:
                     print("wrong")
-                    self.keys[self.typedOut[index].lowercased()]?.color = myKey?.wrongKeyColor ?? .red
-//                    print(self.keys[self.typedOut[index].lowercased()]?.color)
-
+                if self.keys[self.typedOut[index].lowercased()]?.color != key().correctKeyColor &&  self.keys[self.typedOut[index].lowercased()]?.color != key().partialKeyColor {
+                        self.keys[self.typedOut[index].lowercased()]?.color = myKey?.wrongKeyColor ?? .red
+                    }
                 case .correct:
                     print("correct")
                     self.keys[self.typedOut[index].lowercased()]?.color = myKey?.correctKeyColor ?? .blue
@@ -321,6 +337,11 @@ class gameModel: ObservableObject {
         if self.guesses.count == self.maxGuesses || self.stringGuess.uppercased() == self.solution.uppercased() {
             self.freqs[guesses.count-1] += 1
             self.updateFreq(freqs: self.freqs)
+            
+            if self.solutionIndex >= (solutionSet.count - 1) {
+                self.solutionSetDone = true
+            }
+            
             self.gameOver = true
             self.rounds += 1
         }

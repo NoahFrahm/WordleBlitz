@@ -9,12 +9,14 @@ import Foundation
 
 struct gameObj: Codable {
     let id: String
+    let name: String
     
     //only the host can trigger start game function
     var host: String
     
     //includes host
-    var players: [String]
+    //key playerID, value is userName
+    var players: [String: String]
     
     //key playerid, value is guess/guess count. to decide winner we look at least total guesses.
     //if player isnt done yet theyh will not be in dict this is how to check if game is finished

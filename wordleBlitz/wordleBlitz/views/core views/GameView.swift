@@ -51,11 +51,20 @@ struct GameView: View {
                     }.padding([.top], 30)
                     Spacer()
                     if roundOver {
-                        Button(action: {
-                            gm.reset()
-                            roundOver.toggle()
-                        }) {
-                            NextButtonView(buttonName: "Next Word")
+                        if gm.solutionSetDone {
+                            Button(action: {
+                                print("Nav to custom screen")
+                            }) {
+                                NextButtonView(buttonName: "Stats")
+                            }
+                        }
+                        else {
+                            Button(action: {
+                                gm.reset()
+                                roundOver.toggle()
+                            }) {
+                                NextButtonView(buttonName: "Next Word")
+                            }
                         }
                     }
                     Spacer()

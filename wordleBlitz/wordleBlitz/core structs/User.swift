@@ -9,7 +9,7 @@ import Foundation
 
 struct User: Codable {
     var id = UUID().uuidString
-    var name: String = ""
+    var name: String = "Anon"
     
 //    frequncey of guesses for solo only
     var stats: [Int] = [0, 0, 0, 0, 0, 0]
