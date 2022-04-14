@@ -12,7 +12,7 @@ struct HostView: View {
     @State var play: Bool = false
     @State var players: [String] = ["Ronald", "Bob", "Harry"]
     @State var confirmQuit: Bool = false
-    @State var gm: gameModel
+    @StateObject var gm: GameModel = GameModel()
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
@@ -31,11 +31,12 @@ struct HostView: View {
 
                 List{
                     let playerCount = gm.game?.players.count ?? 0
-                    Section(playerCount == 0 ? "Waiting on Players" : "\(playerCount) Players"){
-                    if gm.game == nil {
+                    Section(playerCount == 0 ? "Waiting on Players" : "\(playerCount - 1) Players"){
+                    if gm.game == nil || playerCount == 1 {
                         ProgressView()
                     }
                     else {
+//                        Text("players")
                         ForEach(gm.game?.players.sorted(by: >) ?? [("NA","NA")], id: \.key) { id, name  in
                             if id != gm.currentUser.id {
                                 HStack{
@@ -48,14 +49,8 @@ struct HostView: View {
                 
                     Section{
                         Button(action: {
-                            if gm.game != nil {
-                                // move into the game model
-//                                gm.solution = gm.game!.solutionSet[0]
-//                                gm.solutionSet = gm.game!.solutionSet
-                                play = true
-                                gm.game?.play = true
-                            }
-                            
+                            play = true
+                            FirebaseService.shared.beginGame()
                         }) {
                             Text("Start Game")
                                 .font(.title2)
@@ -72,9 +67,11 @@ struct HostView: View {
                 
             }.alert(isPresented: $confirmQuit) {
                 Alert(title: Text("Quit Game?"),
-                
                 primaryButton: .destructive(Text("Yes")) {
     //                add code to remove from game
+//                    if FirebaseService.shared.game.players.count <= 1 {
+//                        FirebaseService.shared.quitTheGame()
+//                    }
                     self.presentationMode.wrappedValue.dismiss()
                     print("Deleting...")
                 },
@@ -86,12 +83,13 @@ struct HostView: View {
             .navigationBarHidden(true)
         }.onAppear{
             gm.getTheGame()
+            gm.updateSolSet()
         }
     }
 }
 
 struct CreateView_Previews: PreviewProvider {
     static var previews: some View {
-        HostView(gm: gameModel())
+        HostView(gm: GameModel())
     }
 }

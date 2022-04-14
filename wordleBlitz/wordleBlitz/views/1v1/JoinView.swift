@@ -19,8 +19,7 @@ struct JoinView: View {
 //    @State var refreshed = FirebaseService.shared.fetchComplete
     @ObservedObject var fire: FirebaseService = FirebaseService.shared
 //    make this passed arg so that it doesn't reload when we modify state here
-    @State var gm: gameModel
-//    = gameModel()
+    @StateObject var gm: GameModel = GameModel()
 
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -30,7 +29,7 @@ struct JoinView: View {
     var body: some View {
         NavigationView{
             VStack{
-                NavigationLink(destination: HostView(gm: gm)
+                NavigationLink(destination: lobbyView(gm: gm, stew: $fire.gameStarted)
                                 .navigationBarTitle("")
                                 .navigationBarBackButtonHidden(true)
                                 .navigationBarHidden(true), isActive:
@@ -83,19 +82,12 @@ struct JoinView: View {
             .alert(isPresented: $askJoinGame) {
                 Alert(title: Text("Join This Game?"),
                 primaryButton: .destructive(Text("Yes")) {
+                    
                     //we need to wait for join game
-                        gm.joinGame(host: selectedGame?.id ?? "no host")
-                        print("1")
-//                        if gm.game != nil {
-//                            // move into the game model
-//                            print("2")
-//                            gm.solution = gm.game!.solutionSet[0]
-//                            gm.solutionSet = gm.game!.solutionSet
-//                            play = true
-//                            gm.game?.play = true
-//                        }
+                    print("1")
+                    gm.joinGame(host: selectedGame?.id ?? "no host")
                     play = true
-//                        play = true
+                    print("2")
                 },
                 secondaryButton: .cancel(Text("No"))
                 )
@@ -111,6 +103,16 @@ struct JoinView: View {
     }
 }
 
+//                    if gm.game != nil {
+                            // move into the game model
+//                            print("2")
+//                            gm.solution = gm.game!.solutionSet[0]
+//                            gm.solutionSet = gm.game!.solutionSet
+//                            play = true
+//                            gm.game?.play = true
+//                        }
+
+
 //            .alert(isPresented: $confirmQuit) {
 //                Alert(title: Text("Quit Game?"),
 //                primaryButton: .destructive(Text("Yes")) {
@@ -123,6 +125,6 @@ struct JoinView: View {
 
 struct JoinView_Previews: PreviewProvider {
     static var previews: some View {
-        JoinView(gm: gameModel())
+        JoinView(gm: GameModel())
     }
 }

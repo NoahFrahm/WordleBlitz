@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ChangeUsernameView: View {
     
-    @State var gm: gameModel = gameModel()
+    @State var gm: GameModel = GameModel()
     @State var typedName: String = ""
     @Binding var show: Bool
     

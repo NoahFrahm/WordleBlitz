@@ -22,6 +22,7 @@
 		092D4E2D27FB8DB900046A20 /* GameModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092D4E2C27FB8DB900046A20 /* GameModeView.swift */; };
 		092D4E3127FBA69800046A20 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092D4E3027FBA69800046A20 /* User.swift */; };
 		092D4E3327FBAAC300046A20 /* game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092D4E3227FBAAC300046A20 /* game.swift */; };
+		09490337280656A00077580A /* lobbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09490336280656A00077580A /* lobbyView.swift */; };
 		0985EFFB27FFF843002FE9D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0985EFFA27FFF843002FE9D9 /* GoogleService-Info.plist */; };
 		099FC70327FA4E86001729ED /* letterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099FC70227FA4E86001729ED /* letterStatus.swift */; };
 		09A51CF427F3A5FA0033F537 /* wordleBlitzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A51CF327F3A5FA0033F537 /* wordleBlitzApp.swift */; };
@@ -31,9 +32,10 @@
 		09A51D0527F3A5FD0033F537 /* wordleBlitzTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A51D0427F3A5FD0033F537 /* wordleBlitzTests.swift */; };
 		09A51D0F27F3A5FD0033F537 /* wordleBlitzUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A51D0E27F3A5FD0033F537 /* wordleBlitzUITests.swift */; };
 		09A51D1127F3A5FD0033F537 /* wordleBlitzUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A51D1027F3A5FD0033F537 /* wordleBlitzUITestsLaunchTests.swift */; };
-		09A51D2027F3A6980033F537 /* gameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A51D1F27F3A6980033F537 /* gameModel.swift */; };
+		09A51D2027F3A6980033F537 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A51D1F27F3A6980033F537 /* GameModel.swift */; };
 		09A51D2227F3A6A90033F537 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A51D2127F3A6A90033F537 /* GameView.swift */; };
 		09A51D2427F3AB900033F537 /* words.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A51D2327F3AB900033F537 /* words.swift */; };
+		09A5A5882808C2D100576728 /* podiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A5A5872808C2D100576728 /* podiumView.swift */; };
 		09ADA3E327FA82C500C30111 /* animatedLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ADA3E227FA82C500C30111 /* animatedLetter.swift */; };
 		09ADA3E527FA943200C30111 /* SoloView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ADA3E427FA943200C30111 /* SoloView.swift */; };
 		09ADA3E727FA951E00C30111 /* UserStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ADA3E627FA951E00C30111 /* UserStatsView.swift */; };
@@ -82,6 +84,7 @@
 		092D4E2C27FB8DB900046A20 /* GameModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeView.swift; sourceTree = "<group>"; };
 		092D4E3027FBA69800046A20 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		092D4E3227FBAAC300046A20 /* game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = game.swift; sourceTree = "<group>"; };
+		09490336280656A00077580A /* lobbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lobbyView.swift; sourceTree = "<group>"; };
 		0985EFFA27FFF843002FE9D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		099FC70227FA4E86001729ED /* letterStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = letterStatus.swift; sourceTree = "<group>"; };
 		09A51CF027F3A5FA0033F537 /* wordleBlitz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wordleBlitz.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,9 +97,10 @@
 		09A51D0A27F3A5FD0033F537 /* wordleBlitzUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wordleBlitzUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		09A51D0E27F3A5FD0033F537 /* wordleBlitzUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wordleBlitzUITests.swift; sourceTree = "<group>"; };
 		09A51D1027F3A5FD0033F537 /* wordleBlitzUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wordleBlitzUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		09A51D1F27F3A6980033F537 /* gameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameModel.swift; sourceTree = "<group>"; };
+		09A51D1F27F3A6980033F537 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		09A51D2127F3A6A90033F537 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		09A51D2327F3AB900033F537 /* words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = words.swift; sourceTree = "<group>"; };
+		09A5A5872808C2D100576728 /* podiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = podiumView.swift; sourceTree = "<group>"; };
 		09ADA3E227FA82C500C30111 /* animatedLetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = animatedLetter.swift; sourceTree = "<group>"; };
 		09ADA3E427FA943200C30111 /* SoloView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoloView.swift; sourceTree = "<group>"; };
 		09ADA3E627FA951E00C30111 /* UserStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatsView.swift; sourceTree = "<group>"; };
@@ -266,7 +270,7 @@
 		09A51D1E27F3A66E0033F537 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				09A51D1F27F3A6980033F537 /* gameModel.swift */,
+				09A51D1F27F3A6980033F537 /* GameModel.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -278,6 +282,8 @@
 				09EAB44527FFEA470071D421 /* MultiplayerOptionsView.swift */,
 				09EAB44727FFEAC90071D421 /* HostView.swift */,
 				09EABE6028026F0200225B3A /* JoinView.swift */,
+				09490336280656A00077580A /* lobbyView.swift */,
+				09A5A5872808C2D100576728 /* podiumView.swift */,
 			);
 			path = 1v1;
 			sourceTree = "<group>";
@@ -464,12 +470,14 @@
 				09EAB46C27FFF00A0071D421 /* FirebaseReference.swift in Sources */,
 				09ADA3E327FA82C500C30111 /* animatedLetter.swift in Sources */,
 				09EABE6128026F0200225B3A /* JoinView.swift in Sources */,
+				09490337280656A00077580A /* lobbyView.swift in Sources */,
 				09A51CF427F3A5FA0033F537 /* wordleBlitzApp.swift in Sources */,
 				09A51D2227F3A6A90033F537 /* GameView.swift in Sources */,
-				09A51D2027F3A6980033F537 /* gameModel.swift in Sources */,
+				09A51D2027F3A6980033F537 /* GameModel.swift in Sources */,
 				09EAB44227FFC8570071D421 /* oneV1View.swift in Sources */,
 				09EAB44827FFEAC90071D421 /* HostView.swift in Sources */,
 				09A51D2427F3AB900033F537 /* words.swift in Sources */,
+				09A5A5882808C2D100576728 /* podiumView.swift in Sources */,
 				09ADA3E727FA951E00C30111 /* UserStatsView.swift in Sources */,
 				09EAB44627FFEA470071D421 /* MultiplayerOptionsView.swift in Sources */,
 				09EAB44427FFCB470071D421 /* ChangeUsernameView.swift in Sources */,
@@ -632,6 +640,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"wordleBlitz/Preview Content\"";
+				DEVELOPMENT_TEAM = 5Q26JU8D54;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -660,6 +669,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"wordleBlitz/Preview Content\"";
+				DEVELOPMENT_TEAM = 5Q26JU8D54;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

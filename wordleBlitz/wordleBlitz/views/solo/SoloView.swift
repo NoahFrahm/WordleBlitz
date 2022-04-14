@@ -11,8 +11,9 @@ struct SoloView: View {
     
     @State var score: Int = 0
     @State var showStats: Bool = false
-//    @StateObject var gm: gameModel = gameModel(solution: "clock")
-    @State var ActiveGame: GameView = GameView(gml: gameModel(solution: "clock"))
+    @StateObject var gm: GameModel = GameModel(solution: "clock")
+//    @State var ActiveGame: GameView = GameView(gml: GameModel(solution: "clock"))
+    
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -22,11 +23,12 @@ struct SoloView: View {
                 ScrollView{
                     TopBarView(showStat: $showStats, presentationMode: _presentationMode)
                     Divider()
-                    ActiveGame
+//                    ActiveGame
+                    GameView(gml: gm)
                 }.padding([.bottom], 10)
                 
                 if showStats {
-                    UserStatsView(endVals: ActiveGame.gm.freqs, show: $showStats)
+                    UserStatsView(endVals: gm.freqs, show: $showStats)
                         .padding([.bottom], 50)
                     }
                 }

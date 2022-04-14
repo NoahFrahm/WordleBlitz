@@ -92,7 +92,7 @@ struct TopBarMultiplayer: View {
 
 struct oneV1View_Previews: PreviewProvider {
     static var previews: some View {
-        oneV1View(ActiveGame: GameView(gml: gameModel(solution: "clock", solutionSet:  ["clock", "jazzy", "train"])))
+        oneV1View(ActiveGame: GameView(gml: GameModel(solution: "clock", solutionSet:  ["clock", "jazzy", "train"])))
 
 //        oneV1View(solutionSet: ["clock", "jazzy", "train"])
     }

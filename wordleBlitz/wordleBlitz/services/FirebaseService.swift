@@ -20,6 +20,9 @@ final class FirebaseService: ObservableObject {
     @Published var openGames: [gameObj] = []
     @Published var fetchComplete: Bool = false
     @Published var inGame: Bool = false
+    @Published var gameStarted: Bool = false
+    @Published var GameError: Bool = false
+
 
     
     init() { }
@@ -37,7 +40,7 @@ final class FirebaseService: ObservableObject {
     
     func completeFetch() {
         self.fetchComplete = true
-        print("open games \(self.openGames)")
+//        print("open games \(self.openGames)")
     }
 
     
@@ -70,122 +73,75 @@ final class FirebaseService: ObservableObject {
             completion()
         }
     }
-
-
-    //get all games on firebase
-//    func fetchAllOpenGames() async {
-////        find games that are joinable
-//        var openGamesCurrent: [gameObj] = []
-//        let docus = FirebaseReference(.Game).whereField("play", isEqualTo: false).getDocuments async
-////        {
-////            querySnapshot, error in
-////
-////            if error != nil {
-////                print("Error starting game", error?.localizedDescription ?? "wonky")
-////                return
-////            }
-////
-////            for doc in querySnapshot!.documents {
-//////                print("\(doc.data().keys)")
-////                let myGame = try? doc.data(as: gameObj.self)
-////                if myGame != nil {
-//////                    self.openGames.append(myGame!)
-////                    openGamesCurrent.append(myGame!)
-////
-////                }
-////
-////            }
-//////            print("\(self.openGames)")
-////            print("first print \(openGamesCurrent)")
-////
-////        }
-//        print("second print \(openGamesCurrent)")
-//
-//    }
     
     func startGame(with userId: String, nickname: String) {
-//      check if there is a game to join, if not we create a new game
-//      if yes we join and start listening to changes for the game
-        
-//      find game with no second player where user isnt first player
-        FirebaseReference(.Game).whereField("player2Id", isEqualTo: "").whereField("player1Id", isNotEqualTo: userId).getDocuments {
-            querySnapshot, error in
-            
-            if error != nil {
-                print("Error starting game", error?.localizedDescription ?? "wonky")
-//                create new game since there are no games
-                self.createNewGame(with: userId, gameName: nickname)
-                return
-            }
-//            we found a game so we join and add listener
-            if let gameData = querySnapshot?.documents.first {
-                self.game = try? gameData.data(as: gameObj.self)
-                self.game.players[userId] = nickname
-//                self.game.blockMoveForPlayerId = userId
-                
-                self.updateGame(self.game)
-                self.listenForGameChanges()
-                
-            } else {
-//                no games to join so we make one
-                self.createNewGame(with: userId, gameName: nickname)
-            }
-            
-        }
+        self.createNewGame(with: userId, gameName: nickname)
     }
     
     func joinGame(with gameId: String, userId: String, userName: String) async {
         print("game ID: \(gameId)")
-//      if yes we join and start listening to changes for the game
-        
-//      find game where user isnt the host
         print("searching")
 
-        let dosty = FirebaseReference(.Game).whereField("play", isEqualTo: false)
-//            .whereField("id", isEqualTo: gameId).whereField("host", isNotEqualTo: userId)
+        //modify to include game idea search criteria
+        let dosty = FirebaseReference(.Game).whereField("play", isEqualTo: false).whereField("id", isEqualTo: gameId)
 
-        
         do {
             let querySnapShot = try await dosty.getDocuments()
-//            print("my data \(String(describing: querySnapShot.documents.))")
             print("my snapshot \(String(describing: querySnapShot))")
             print("my document \(String(describing: querySnapShot.documents))")
-            
-//            var joinGame = try? querySnapShot.documents.first?.data(as: gameObj.self)
-//            self.game.players.append(userId)
-//            self.updateGame(self.game)
-//            self.listenForGameChanges()
-            
-//            print("the host is \(joinGame?.host as? String)")
 
+            //we join the first game that matches our criteria
             if let gameData = querySnapShot.documents.first {
                 print("game found")
-                self.game = try? gameData.data(as: gameObj.self)
-                self.game.players[userId] = userName
-                self.updateGame(self.game)
-                self.listenForGameChanges()
+                DispatchQueue.main.async {
+                    self.game = try? gameData.data(as: gameObj.self)
+//                    self.game.players["joyner"] = userName
+                    self.game.players[userId] = userName
+                    self.game.guessCount[userId] = 0
+                    self.game.playersDone[userId] = false
+
+
+                    self.updateGame(self.game)
+                    self.listenForGameChanges()
+                    self.inGame = true
+                }
+                    print("game joined")
             }
-            
         } catch {
-            print("error updating game", error.localizedDescription)
+            print("error joining game", error.localizedDescription)
             return
         }
     }
     
+    
     func listenForGameChanges() {
-//        listen to database for changes
-        
-//        do {
-//            try FirebaseReference(.Game).document(game.id).setData(from: self.game)
-//        } catch {
-//            print("error creating game", error.localizedDescription)
-//        }
+        FirebaseReference(.Game).document(self.game.id).addSnapshotListener { documentSnapshot, error in
+            print("changes recieved from firebase")
+
+            if error != nil {
+                print("Error listening to changes", error?.localizedDescription ?? "wacky")
+                return
+            }
+
+            if let snapshot = documentSnapshot {
+                self.game = try? snapshot.data(as: gameObj.self)
+                
+                if self.game == nil {
+                    self.GameError = true
+                    return
+                    
+                }
+                
+                self.gameStarted = self.game.play
+                print("game start? \(self.game.play)")
+                print("game changes recieved")
+            }
+        }
     }
     
     func updateGame(_ game: gameObj) {
         do {
             try FirebaseReference(.Game).document(game.id).setData(from: game)
-            print("updated game")
         } catch {
             print("error updating game", error.localizedDescription)
         }
@@ -201,14 +157,36 @@ final class FirebaseService: ObservableObject {
         }
         let indices = Array(set)
         
-        self.game = gameObj(id: UUID().uuidString,name: gameName, host: userId, players: [userId: gameName], guessCount: [String: Int](), solutionSet: [words[indices[0]], words[indices[1]], words[indices[2]]])
+        self.game = gameObj(id: UUID().uuidString,name: gameName, host: userId, players: [userId: gameName], guessCount: [userId: 0], solutionSet: [words[indices[0]], words[indices[1]], words[indices[2]]])
         self.createOnlineGame()
         self.listenForGameChanges()
     }
     
     func quitTheGame() {
         guard game != nil else { return }
+        game = nil
+        openGames = []
+        fetchComplete = false
+        inGame = false
+        gameStarted = false
+        GameError = false
         FirebaseReference(.Game).document(self.game.id).delete()
+    }
+    
+    func leaveTheGame() {
+        guard game != nil else { return }
+        game = nil
+        openGames = []
+        fetchComplete = false
+        inGame = false
+        gameStarted = false
+        GameError = false
+        FirebaseReference(.Game).document(self.game.id).delete()
+    }
+    
+    func beginGame() {
+        self.game.play = true
+        self.updateGame(self.game)
     }
 }
 

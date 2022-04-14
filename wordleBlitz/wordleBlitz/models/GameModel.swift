@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 
-class gameModel: ObservableObject {
+class GameModel: ObservableObject {
     
     @AppStorage("user") private var userData: Data?
     
@@ -38,10 +38,7 @@ class gameModel: ObservableObject {
     
     private var cancellables: Set<AnyCancellable> = []
 
-//    let defaultKeyColor: Color = Color("lightgray")
-//    let wrongKeyColor: Color = .gray
-//    let defaultTextColor: Color = .black
-//    let changedTextColor: Color = .white
+    @Published var totalGuessCount = 0
     
     var maxGuesses = 6
     var rounds = 0
@@ -185,16 +182,31 @@ class gameModel: ObservableObject {
     func getOpenGames() {
         FirebaseService.shared.fetchComplete = false
         FirebaseService.shared.getWhatIneed()
-        print("second call \(FirebaseService.shared.openGames)")
+//        print("second call \(FirebaseService.shared.openGames)")
     }
     
     func joinGame(host: String) {
         print("host to join \(host)")
         Task {
             await FirebaseService.shared.joinGame(with: host, userId: self.currentUser.id, userName: self.currentUser.name)
+            if self.game != nil {
+                print("got our game")
+                self.solution = self.game!.solutionSet[0]
+                self.solutionSet = self.game!.solutionSet
+                print("done setting solution set")
+            }
+            print("in game: \(FirebaseService.shared.inGame)")
         }
     }
     
+//    func pushChanges() {
+//        FirebaseService.shared.updateGame(self.game!)
+//    }
+    
+    func updateGuessCount() {
+        FirebaseService.shared.game.guessCount[self.currentUser.id] = self.totalGuessCount
+        FirebaseService.shared.updateGame(FirebaseService.shared.game)
+    }
     
     
     //MARK: - game functions
@@ -204,6 +216,16 @@ class gameModel: ObservableObject {
             self.solutionIndex += 1
             self.solution = self.solutionSet[self.solutionIndex]
         }
+    }
+    
+    func updateSolSet() {
+//        do {
+            self.solutionSet = FirebaseService.shared.game?.solutionSet ?? ["none","none","none"]
+            self.solution = FirebaseService.shared.game?.solutionSet[0] ?? "none"
+            print("updated")
+//        } catch {
+//            print("couldn't be updated")
+//        }
     }
     
     
@@ -323,6 +345,12 @@ class gameModel: ObservableObject {
                 default:
                     print("error finding key to change")
             }
+        }
+        
+        self.totalGuessCount += 1
+        
+        if solutionSet.count < 5 {
+            self.updateGuessCount()
         }
         
         self.guesses.append(self.typedOut)

@@ -26,13 +26,15 @@ struct gameObj: Codable {
     
 //    private var start = Int.random(in: 0..<words.count)
 //    private var solutions = [start, (start + 1) % words.count]
-    var solutionSet: [String] = ["CLOCK", "TIMED", "TRAIN"]
+    var solutionSet: [String]
+//    = ["CLOCK", "TIMED", "TRAIN"]
 //    [String](repeating: 0, count: 5)
     
     var play: Bool = false
     //track guess count to calculate this
 //    var winningPlayerId: String
     
+    var playersDone: [String: Bool] = [String: Bool]()
     //player IDs for rematch
 //    var rematchPlayerId: [String]
     

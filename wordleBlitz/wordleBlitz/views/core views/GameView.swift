@@ -9,12 +9,13 @@ import SwiftUI
 
 struct GameView: View {
     
-    @ObservedObject var gm: gameModel
+    @ObservedObject var gm: GameModel
 //    = gameModel(solution: "clock")
     @State var roundOver: Bool = false
     @State var badSpell: Bool = false
+    @State var podium: Bool = false
     
-    init(gml: gameModel) {
+    init(gml: GameModel) {
         self.gm = gml
     }
     
@@ -23,6 +24,13 @@ struct GameView: View {
     
     var body: some View {
         ZStack{
+            NavigationLink(destination: podiumView()
+                            .navigationBarTitle("")
+                            .navigationBarBackButtonHidden(true)
+                            .navigationBarHidden(true), isActive:
+                            $podium){
+                EmptyView()
+            }
             VStack{
                 letterGridView(gm: gm)
                 KeyRowView(model: gm, spacing: spacing).topRow
@@ -50,12 +58,15 @@ struct GameView: View {
                         }
                     }.padding([.top], 30)
                     Spacer()
+                    //TODO: - change back to without !
                     if roundOver {
-                        if gm.solutionSetDone {
+                        if !gm.solutionSetDone {
+//                            FirebaseService.shared.game.
                             Button(action: {
                                 print("Nav to custom screen")
+                                podium = true
                             }) {
-                                NextButtonView(buttonName: "Stats")
+                                NextButtonView(buttonName: "Finish")
                             }
                         }
                         else {
@@ -99,7 +110,7 @@ struct GameView: View {
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView(gml: gameModel(solution: "clock"))
+        GameView(gml: GameModel(solution: "clock"))
     }
 }
 
@@ -107,7 +118,7 @@ struct GameView_Previews: PreviewProvider {
 //MARK: - KeyBoard
 struct KeyBoardKeyView: View {
     
-    @ObservedObject var model: gameModel
+    @ObservedObject var model: GameModel
     var letter: String
     var backgroundColor: Color
     var letterColor: Color
@@ -130,7 +141,7 @@ struct KeyBoardKeyView: View {
 
 struct KeyRowView {
 
-    @ObservedObject var model: gameModel
+    @ObservedObject var model: GameModel
     var spacing: CGFloat
     
     let topKeys = ["q","w","e","r","t","y","u","i","o","p"]
@@ -224,7 +235,7 @@ struct TypedOutLettersView: View {
 //displays a row of letters
 struct LetterRowView: View {
 
-    @ObservedObject var gm: gameModel
+    @ObservedObject var gm: GameModel
     var word: [String] = ["", "", "", "", ""]
 
     
@@ -311,7 +322,7 @@ struct SingleLetterView: View {
 //grid of letters ie past guesses and typed out letters
 struct letterGridView: View {
 
-    @ObservedObject var gm: gameModel
+    @ObservedObject var gm: GameModel
     
 
     var lengthenTypedOut: [String] {
