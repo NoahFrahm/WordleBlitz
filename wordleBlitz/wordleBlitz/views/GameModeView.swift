@@ -22,10 +22,6 @@ struct GameModeView: View {
                 NavigationLink(destination: MultiplayerOptionsView().navigationBarBackButtonHidden(true).navigationBarHidden(true), isActive: $gameMode[1]) {
                     EmptyView()
                 }
-//                NavigationLink(destination: EmptyView()) {
-//                    EmptyView()
-//                }
-                
                 HStack{
                     Spacer()
                     Button(action: {editUserName.toggle()}) {
@@ -47,13 +43,12 @@ struct GameModeView: View {
                 GameModeButtonView(navBool: $gameMode[1], title: "1V1")
                 
                 Spacer()
-            }.navigationBarHidden(true)
-            .sheet(isPresented: $editUserName) {
-//                Text("This is a sheet")
-                ChangeUsernameView(show: $editUserName)
-                
             }
-        }
+            .navigationBarBackButtonHidden(true).navigationBarHidden(true)
+            }
+            .sheet(isPresented: $editUserName) {
+                ChangeUsernameView(show: $editUserName)
+            }
     }
 }
 

@@ -91,8 +91,8 @@ class GameModel: ObservableObject {
         self.solution = solution
         self.solutionSet = solutionSet
 
-        print(self.solution)
-        print(self.solutionSet[0], self.solutionSet[1], self.solutionSet[2])
+//        print(self.solution)
+//        print(self.solutionSet[0], self.solutionSet[1], self.solutionSet[2])
         let topRow = ["q","w","e","r","t","y","u","i","o","p"]
         let middleRow = ["a","s","d","f","g","h","j","k","l"]
         let bottomRow = ["z","x","c","v","b","n","m"]
@@ -186,7 +186,7 @@ class GameModel: ObservableObject {
     }
     
     func joinGame(host: String) {
-        print("host to join \(host)")
+//        print("host to join \(host)")
         Task {
             await FirebaseService.shared.joinGame(with: host, userId: self.currentUser.id, userName: self.currentUser.name)
             if self.game != nil {
@@ -195,7 +195,7 @@ class GameModel: ObservableObject {
                 self.solutionSet = self.game!.solutionSet
                 print("done setting solution set")
             }
-            print("in game: \(FirebaseService.shared.inGame)")
+//            print("in game: \(FirebaseService.shared.inGame)")
         }
     }
     
@@ -307,7 +307,7 @@ class GameModel: ObservableObject {
     // checks guess and recolors keys appropriately
     func enter() {
         let mispelled = isMispelled()
-        print(mispelled)
+//        print(mispelled)
         
         if mispelled {
             misSpellNotifier.toggle()
@@ -317,7 +317,7 @@ class GameModel: ObservableObject {
         
         let colorKey = self.checkGuess(guess: self.typedOut)
 //        print(colorKey)
-        print(colorKey, typedOut)
+//        print(colorKey, typedOut)
 
         
         //this for loop decodes color key and assigns new key/text colors accordingly
@@ -365,7 +365,7 @@ class GameModel: ObservableObject {
     
     //checks if game is over by max guesses or correct solution an sets gameover bool to true or false accordingly
     private func checkGameOver() {
-        print(self.stringGuess, self.solution)
+//        print(self.stringGuess, self.solution)
         if self.guesses.count == self.maxGuesses || self.stringGuess.uppercased() == self.solution.uppercased() {
             self.freqs[guesses.count-1] += 1
             self.updateFreq(freqs: self.freqs)

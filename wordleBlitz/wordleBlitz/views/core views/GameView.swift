@@ -21,25 +21,20 @@ struct GameView: View {
     
     var spacing: CGFloat = 5
 
-    
     var body: some View {
-        if podium {
-            podiumView()
-        }
-        else {
+//        NavigationView{
             ZStack{
-    //            NavigationLink(destination: podiumView()
-    //                            .navigationBarTitle("")
-    //                            .navigationBarBackButtonHidden(true)
-    //                            .navigationBarHidden(true), isActive:
-    //                            $podium){
-    //                EmptyView()
-    //            }
-    //            NavigationLink(destination: EmptyView()) {
-    //                EmptyView()
-    //            }
-
                 VStack{
+                    NavigationLink(destination: podiumView()
+                                    .navigationBarTitle("")
+                                    .navigationBarBackButtonHidden(true)
+                                    .navigationBarHidden(true), isActive:
+                                    $podium){
+                        EmptyView()
+                    }
+                    NavigationLink(destination: EmptyView()) {
+                        EmptyView()
+                    }
                     letterGridView(gm: gm)
                     KeyRowView(model: gm, spacing: spacing).topRow
                         .padding([.top], 20)
@@ -47,7 +42,6 @@ struct GameView: View {
                     KeyRowView(model: gm, spacing: spacing).bottomRow
                 }.disabled(gm.gameOver)
                 
-               
                 if gm.gameOver {
                     VStack{
                         ZStack{
@@ -109,15 +103,18 @@ struct GameView: View {
                         Spacer()
                     }
                 }
+                
             }.onChange(of: gm.misSpellNotifier) { _ in
                 badSpell = true
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     badSpell = false
                 }
             }
-            
+            .navigationBarTitle("")
+                .navigationBarBackButtonHidden(true)
+                .navigationBarHidden(true)
         }
-    }
+//    }
 }
 
 struct GameView_Previews: PreviewProvider {

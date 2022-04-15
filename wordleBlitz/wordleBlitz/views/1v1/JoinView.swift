@@ -80,10 +80,10 @@ struct JoinView: View {
                 Alert(title: Text("Join This Game?"),
                 primaryButton: .destructive(Text("Yes")) {
                     //we need to wait for join game
-                    print("1")
+//                    print("1")
                     gm.joinGame(host: selectedGame?.id ?? "no host")
                     play = true
-                    print("2")
+//                    print("2")
                 },
                 secondaryButton: .cancel(Text("No")){
                     askJoinGame = false

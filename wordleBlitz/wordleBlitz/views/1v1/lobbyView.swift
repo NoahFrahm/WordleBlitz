@@ -18,74 +18,79 @@ struct lobbyView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
-        VStack {
-            //TODO: - fix the navigation error here
-//            NavigationLink(destination: GameModeView()
-//                            .navigationBarTitle("")
-//                            .navigationBarBackButtonHidden(true)
-//                            .navigationBarHidden(true), isActive:
-//                            $back){
-//                EmptyView()
-//            }
-//            NavigationLink(destination: EmptyView()) {
-//                EmptyView()
-//            }
-
-            if fire.inGame {
-                if stew {
-                    oneV1View(gm: gm)
+        NavigationView{
+            VStack {
+                //TODO: - fix the navigation error here
+                NavigationLink(destination: GameModeView()
+                                .navigationBarTitle("")
+                                .navigationBarBackButtonHidden(true)
+                                .navigationBarHidden(true), isActive:
+                                $back){
+                    EmptyView()
                 }
-                else if fire.GameError{
-                    ErrorView()
+                NavigationLink(destination: EmptyView()) {
+                    EmptyView()
                 }
-                else {
-                    Text("wait for host to start game")
-                    List{
-                        let playerCount = fire.game.players.count
-                        Section(playerCount == 0 ? "Waiting on Players" : "\(playerCount) Players"){
-                        if fire.game == nil || playerCount == 1 {
-                            ProgressView()
-                        }
-                        else {
-                            ForEach(fire.game.players.sorted(by: >) , id: \.key) { id, name  in
-                                    HStack{
-                                        Text(name)
-                                    }
+                if fire.inGame {
+                    if stew {
+                        oneV1View(gm: gm)
+                    }
+                    else if fire.GameError{
+                        ErrorView()
+                    }
+                    else {
+                        Text("wait for host to start game")
+                        List{
+                            let playerCount = fire.game.players.count
+                            Section(playerCount == 0 ? "Waiting on Players" : "\(playerCount) Players"){
+                            if fire.game == nil || playerCount == 1 {
+                                ProgressView()
+                            }
+                            else {
+                                ForEach(fire.game.players.sorted(by: >) , id: \.key) { id, name  in
+                                        HStack{
+                                            Text(name)
+                                        }
+                                }
+                            }
+                        }.font(.title3)
+                            Button(action: {confirmQuit = true}) {
+                                Text("Quit")
+                                    .foregroundColor(.red)
+                                    .font(.title2)
                             }
                         }
-                    }.font(.title3)
-                        Button(action: {confirmQuit = true}) {
-                            Text("Quit")
-                                .foregroundColor(.red)
-                                .font(.title2)
+                        .listStyle(InsetGroupedListStyle())
                         }
+                }
+                else {
+                    Text("loading game")
+                    ProgressView()
+                        .padding([.bottom], 40)
+                    Button("Back") {
+                        back = true
                     }
-                    .listStyle(InsetGroupedListStyle())
-                    }
-            }
-            else {
-                Text("loading game")
-                ProgressView()
-                    .padding([.bottom], 40)
-                Button("Back") {
-                    back = true
                 }
             }
-        }
-        .onChange(of: fire.inGame) { _ in
-            gm.updateSolSet()
-        }
-        .alert(isPresented: $confirmQuit) {
-            Alert(title: Text("Quit Game?"),
-            primaryButton: .destructive(Text("Yes")) {
-//                add code to remove from game
-                gm.leave()
-//                back = true
-                presentationMode.wrappedValue.dismiss()
-                print("Deleting...")
-            },
-            secondaryButton: .cancel(Text("No"))
-            )
+            .navigationBarTitle("")
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
+            .onChange(of: fire.inGame) { _ in
+                gm.updateSolSet()
+            }
+            .alert(isPresented: $confirmQuit) {
+                Alert(title: Text("Quit Game?"),
+                primaryButton: .destructive(Text("Yes")) {
+    //                add code to remove from game
+                    gm.leave()
+                    back = true
+//                    presentationMode.wrappedValue.dismiss()
+                    print("Deleting...")
+                },
+                secondaryButton: .cancel(Text("No"))
+                )
+            }
+            
         }
     }
 }

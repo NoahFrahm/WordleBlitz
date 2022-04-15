@@ -11,36 +11,105 @@ struct podiumView: View {
     
     @ObservedObject var fire: FirebaseService = FirebaseService.shared
     @State var goHome: Bool = false
+    @State var frame: Int = 0
+    @State var done: Bool = false
+    
+    var frames = ["┬─┬ノ( º _ ºノ)", "┻━┻ ︵ ヽ(°□°ヽ)",]
+    
+    let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
+
+    
+//    var dummyData = [6, 12, 14]
+//    var ratios: [Double] {
+//        var rats: [Double] = []
+//        for num in dummyData {
+//            rats.append(Double(num)/Double(18))
+//        }
+//        return rats
+//    }
     
     var body: some View {
-        VStack{
-            NavigationLink(destination: GameModeView()
-                            .navigationBarTitle("")
-                            .navigationBarBackButtonHidden(true)
-                            .navigationBarHidden(true), isActive:
-                            $goHome){
-                EmptyView()
-            }
-//                            .isDetailLink(false)
-//            NavigationLink(destination: EmptyView()) {
-//                EmptyView()
-//            }.isDetailLink(false)
-            
-            Text("the podium")
-            if fire.game != nil {
-                ForEach(fire.game.players.sorted(by: >) , id: \.key) { id, name  in
+        NavigationView{
+            VStack(alignment: .leading){
+                NavigationLink(destination: GameModeView()
+                                .navigationBarTitle("")
+                                .navigationBarBackButtonHidden(true)
+                                .navigationBarHidden(true), isActive:
+                                $goHome){
+                    EmptyView()
+                }
+                if fire.game != nil {
+                    if !fire.gameFinished{
+                    ForEach(fire.game.players.sorted(by: >) , id: \.key) { id, name  in
+                        let guesses = fire.game.guessCount[id] ?? 0
+                        let ratio = Double(guesses) / Double(18)
                         HStack{
-                            Text(name)
+                            Text("\(name)")
                             Rectangle()
-                                .frame(width: 100, height: 40)
-                                .foregroundColor(.red)
+                                .frame(width: ratio * 200, height: 40)
+                                .foregroundColor(.blue)
+                            Text("\(guesses)")
+                            }
                         }
+                        Text("waiting for other players to finish")
+                    }
+                    else {
+                        let winner: String = fire.game.players[fire.getWinner()] ?? "error fetching winner"
+                        Spacer()
+                        HStack{
+                            Spacer()
+                            Text("\(winner) Wins!!!")
+                            Spacer()
+                        }.padding([.bottom], 30)
+                        HStack{
+                            Spacer()
+                            Text(frames[frame])
+                                .font(.largeTitle)
+                                .padding([.bottom], 100)
+                            Spacer()
+                        }
+                        HStack{
+                            Spacer()
+//                            if frame == 0 {
+                            Button("flip table") {
+                                self.frame = (self.frame + 1) % 2
+                            }
+                            Spacer()
+                        }
+                        HStack{
+                            Spacer()
+                            Button("return to menu") {
+                                goHome = true
+                            }
+                            Spacer()
+                        }
+                        Spacer()
+
+                    }
+                }
+                else{
+//                    ErrorView()
+                    Spacer()
+                    HStack{
+                        Spacer()
+                        Text(frames[frame])
+                            .font(.largeTitle)
+                            .padding([.bottom], 100)
+                        Spacer()
+                    }
+                    HStack{
+                        Spacer()
+                        Button("flip table") {
+                            self.frame = (self.frame + 1) % 2
+                        }
+                        Spacer()
+                    }
+                    Spacer()
                 }
             }
-            Button("return to menu") {
-                goHome = true
-            }
-            
+            .navigationBarTitle("")
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
         }
     }
 }

@@ -30,10 +30,6 @@ struct MultiplayerOptionsView: View {
                     , isActive: $create[1]) {
                     EmptyView()
                 }
-//                NavigationLink(destination: EmptyView()) {
-//                    EmptyView()
-//                }
-
                 Spacer()
                 Image(systemName: "gamecontroller.fill")
                     .font(.system(size: 200))
@@ -55,7 +51,6 @@ struct MultiplayerOptionsView: View {
                                 .stroke(Color.black, lineWidth: 2)
                         )
                 }
-                
                 Spacer()
             }
         }

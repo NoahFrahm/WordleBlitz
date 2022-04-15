@@ -22,59 +22,52 @@ struct oneV1View: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
-        VStack{
-            NavigationLink(destination: GameModeView()
-                            .navigationBarTitle("")
-                            .navigationBarBackButtonHidden(true)
-                            .navigationBarHidden(true), isActive:
-                            $quit){
-                EmptyView()
-            }
-            ZStack{
-                ScrollView{
-                    
-//                    TopBarMultiplayer(showStat: $showStats , quit: $quit, userName: userName)
-                    
-                    HStack{
-                        Spacer()
-                        Button(action: {
-                            quit.toggle()
-//                            presentationMode.wrappedValue.dismiss()
-
-                            gm.leave()
-                        }) {
-                            Text("QUIT")
+        NavigationView{
+            VStack{
+                NavigationLink(destination: GameModeView()
+                                .navigationBarTitle("")
+                                .navigationBarBackButtonHidden(true)
+                                .navigationBarHidden(true), isActive:
+                                $quit){
+                    EmptyView()
+                }
+                    ScrollView{
+                        HStack{
+                            Spacer()
+                            Button(action: {
+                                quit.toggle()
+                                gm.leave()
+                            }) {
+                                Text("QUIT")
+                                    .foregroundColor(.black)
+                                    .font(.title2)
+                            }
+                            
+                            Spacer()
+                            
+                            Text(userName)
                                 .foregroundColor(.black)
                                 .font(.title2)
+                            
+                            Spacer()
+                            
+                            Button(action: {}) {
+                                Image(systemName: "gear")
+                                    .foregroundColor(.black)
+                                    .font(.title)
+                            }
+                            
+                            Spacer()
                         }
+                        Divider()
                         
-                        Spacer()
-                        
-                        Text(userName)
-                            .foregroundColor(.black)
-                            .font(.title2)
-                        
-                        Spacer()
-                        
-                        Button(action: {}) {
-                            Image(systemName: "gear")
-                                .foregroundColor(.black)
-                                .font(.title)
-                        }
-                        
-                        Spacer()
-                    }
-
-                    
-                    Divider()
-                    GameView(gml: gm)
-                }.padding([.bottom], 10)
-                
-                if showStats {
-                    UserStatsView(endVals: (gm.freqs), show: $showStats)
-                        .padding([.bottom], 50)
-                    }
-                }
+                        GameView(gml: gm)
+                            .padding([.top], 20)
+                    }.padding([.bottom], 10)
+            }
+            .navigationBarTitle("")
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
         }
     }
 }

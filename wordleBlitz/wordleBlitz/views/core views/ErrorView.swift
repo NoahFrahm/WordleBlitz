@@ -11,25 +11,19 @@ struct ErrorView: View {
     
     @State var home: Bool = false
     
-//    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
-    
     var body: some View {
-        if home {
-            GameModeView()
-        }
-        else {
+        NavigationView{
             VStack(alignment: .leading){
-    //            NavigationLink(destination: GameModeView()
-    //                            .navigationBarTitle("")
-    //                            .navigationBarBackButtonHidden(true)
-    //                            .navigationBarHidden(true), isActive:
-    //                            $home){
-    //                EmptyView()
-    //            }
-    //            NavigationLink(destination: EmptyView()) {
-    //                EmptyView()
-    //            }
+                NavigationLink(destination: GameModeView()
+                                .navigationBarTitle("")
+                                .navigationBarBackButtonHidden(true)
+                                .navigationBarHidden(true), isActive:
+                                $home){
+                    EmptyView()
+                }
+                NavigationLink(destination: EmptyView()) {
+                    EmptyView()
+                }
 
                 Text("An Error occured :(")
                 Button("Back to Main Menu") {
@@ -37,6 +31,9 @@ struct ErrorView: View {
                     home.toggle()
                 }
             }
+            .navigationBarTitle("")
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
         }
     }
 }

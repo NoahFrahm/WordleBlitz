@@ -30,9 +30,6 @@ struct HostView: View {
                                 $play){
                     EmptyView()
                 }
-//                NavigationLink(destination: EmptyView()) {
-//                    EmptyView()
-//                }
                 NavigationLink(destination: GameModeView()
                                 .navigationBarTitle("")
                                 .navigationBarBackButtonHidden(true)
@@ -43,8 +40,6 @@ struct HostView: View {
                 NavigationLink(destination: EmptyView()) {
                     EmptyView()
                 }
-
-
                 List{
                     let playerCount = gm.game?.players.count ?? 0
                     Section(playerCount == 0 ? "Waiting on Players" : "\(playerCount - 1) Players"){

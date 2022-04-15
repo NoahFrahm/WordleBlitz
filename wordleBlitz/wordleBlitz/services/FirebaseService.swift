@@ -22,6 +22,7 @@ final class FirebaseService: ObservableObject {
     @Published var inGame: Bool = false
     @Published var gameStarted: Bool = false
     @Published var GameError: Bool = false
+    @Published var gameFinished: Bool = false
 
 
     
@@ -100,7 +101,6 @@ final class FirebaseService: ObservableObject {
                     self.game.guessCount[userId] = 0
                     self.game.playersDone[userId] = false
 
-
                     self.updateGame(self.game)
                     self.listenForGameChanges()
                     self.inGame = true
@@ -131,7 +131,7 @@ final class FirebaseService: ObservableObject {
                     return
                     
                 }
-                
+                self.gameFinished = self.playersDone()
                 self.gameStarted = self.game.play
                 print("game start? \(self.game.play)")
                 print("game changes recieved")
@@ -206,5 +206,28 @@ final class FirebaseService: ObservableObject {
         self.updateGame(self.game)
     }
     
+    func playersDone() -> Bool {
+        if self.game != nil {
+            for (_, val) in self.game.playersDone {
+                if val == false {
+                    return false
+                }
+            }
+            return true
+        }
+        return false
+    }
+    
+    func getWinner() -> String {
+        var min: Int = 100
+        var minPlayer: String = ""
+        for (key, val) in self.game.guessCount {
+            if val < min {
+                minPlayer = key
+                min = val
+            }
+        }
+        return minPlayer
+    }
 }
 
