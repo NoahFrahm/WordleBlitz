@@ -22,6 +22,9 @@ struct GameModeView: View {
                 NavigationLink(destination: MultiplayerOptionsView().navigationBarBackButtonHidden(true).navigationBarHidden(true), isActive: $gameMode[1]) {
                     EmptyView()
                 }
+//                NavigationLink(destination: EmptyView()) {
+//                    EmptyView()
+//                }
                 
                 HStack{
                     Spacer()

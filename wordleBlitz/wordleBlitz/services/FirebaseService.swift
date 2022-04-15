@@ -157,36 +157,54 @@ final class FirebaseService: ObservableObject {
         }
         let indices = Array(set)
         
-        self.game = gameObj(id: UUID().uuidString,name: gameName, host: userId, players: [userId: gameName], guessCount: [userId: 0], solutionSet: [words[indices[0]], words[indices[1]], words[indices[2]]])
+        self.game = gameObj(id: UUID().uuidString,name: gameName, host: userId, players: [userId: gameName], guessCount: [userId: 0], solutionSet: [words[indices[0]], words[indices[1]], words[indices[2]]], playersDone: [userId: false])
         self.createOnlineGame()
         self.listenForGameChanges()
     }
     
     func quitTheGame() {
         guard game != nil else { return }
-        game = nil
-        openGames = []
-        fetchComplete = false
-        inGame = false
-        gameStarted = false
-        GameError = false
+        self.openGames = []
+        self.fetchComplete = false
+        self.inGame = false
+        self.gameStarted = false
+        self.GameError = false
         FirebaseReference(.Game).document(self.game.id).delete()
+        self.game = nil
     }
     
-    func leaveTheGame() {
-        guard game != nil else { return }
+    func reset() {
         game = nil
         openGames = []
         fetchComplete = false
         inGame = false
         gameStarted = false
         GameError = false
-        FirebaseReference(.Game).document(self.game.id).delete()
+    }
+    
+    func leaveTheGame(playerId: String) {
+        guard game != nil else { return }
+        if FirebaseService.shared.game.players.count == 1 {
+            quitTheGame()
+        }
+        else {
+            FirebaseService.shared.game.players.removeValue(forKey: playerId)
+            FirebaseService.shared.game.guessCount.removeValue(forKey: playerId)
+            FirebaseService.shared.game.playersDone.removeValue(forKey: playerId)
+            self.updateGame(self.game)
+        }
+        self.reset()
     }
     
     func beginGame() {
         self.game.play = true
         self.updateGame(self.game)
     }
+    
+    func finishGame(playerId: String) {
+        self.game.playersDone[playerId] = true
+        self.updateGame(self.game)
+    }
+    
 }
 

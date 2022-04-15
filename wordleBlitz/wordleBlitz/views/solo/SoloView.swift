@@ -11,7 +11,8 @@ struct SoloView: View {
     
     @State var score: Int = 0
     @State var showStats: Bool = false
-    @StateObject var gm: GameModel = GameModel(solution: "clock")
+    @StateObject var gm: GameModel = GameModel()
+//    solution: "clock"
 //    @State var ActiveGame: GameView = GameView(gml: GameModel(solution: "clock"))
     
     

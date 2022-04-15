@@ -219,13 +219,17 @@ class GameModel: ObservableObject {
     }
     
     func updateSolSet() {
-//        do {
-            self.solutionSet = FirebaseService.shared.game?.solutionSet ?? ["none","none","none"]
-            self.solution = FirebaseService.shared.game?.solutionSet[0] ?? "none"
-            print("updated")
-//        } catch {
-//            print("couldn't be updated")
-//        }
+        self.solutionSet = FirebaseService.shared.game?.solutionSet ?? ["none","none","none"]
+        self.solution = FirebaseService.shared.game?.solutionSet[0] ?? "none"
+        print("updated")
+    }
+    
+    func leave() {
+        FirebaseService.shared.leaveTheGame(playerId: self.currentUser.id)
+    }
+    
+    func finishWords() {
+        FirebaseService.shared.finishGame(playerId: self.currentUser.id)
     }
     
     

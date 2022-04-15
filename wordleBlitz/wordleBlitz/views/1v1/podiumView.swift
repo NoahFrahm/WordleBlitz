@@ -21,8 +21,22 @@ struct podiumView: View {
                             $goHome){
                 EmptyView()
             }
+//                            .isDetailLink(false)
+//            NavigationLink(destination: EmptyView()) {
+//                EmptyView()
+//            }.isDetailLink(false)
             
             Text("the podium")
+            if fire.game != nil {
+                ForEach(fire.game.players.sorted(by: >) , id: \.key) { id, name  in
+                        HStack{
+                            Text(name)
+                            Rectangle()
+                                .frame(width: 100, height: 40)
+                                .foregroundColor(.red)
+                        }
+                }
+            }
             Button("return to menu") {
                 goHome = true
             }

@@ -16,24 +16,24 @@ struct MultiplayerOptionsView: View {
     var body: some View {
         NavigationView{
             VStack(alignment: .center, spacing: 20){
-                NavigationLink(destination: HostView(
-//                    gm: gameModel()
-                )
+                NavigationLink(destination: HostView()
                                 .navigationBarTitle("")
                                 .navigationBarHidden(true)
                                 .navigationBarBackButtonHidden(true)
                     , isActive: $create[0]) {
                     EmptyView()
                 }
-                NavigationLink(destination: JoinView(
-//                    gm: gameModel()
-                )
+                NavigationLink(destination: JoinView()
                                 .navigationBarTitle("")
                                 .navigationBarHidden(true)
                                 .navigationBarBackButtonHidden(true)
                     , isActive: $create[1]) {
                     EmptyView()
                 }
+//                NavigationLink(destination: EmptyView()) {
+//                    EmptyView()
+//                }
+
                 Spacer()
                 Image(systemName: "gamecontroller.fill")
                     .font(.system(size: 200))

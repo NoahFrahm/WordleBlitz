@@ -15,22 +15,28 @@ struct lobbyView: View {
     @State var back: Bool = false
     @Binding var stew: Bool
     
-//    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         VStack {
             //TODO: - fix the navigation error here
-            NavigationLink(destination: JoinView()
-                            .navigationBarTitle("")
-                            .navigationBarBackButtonHidden(true)
-                            .navigationBarHidden(true), isActive:
-                            $back){
-                EmptyView()
-//                Text("here")
-            }
+//            NavigationLink(destination: GameModeView()
+//                            .navigationBarTitle("")
+//                            .navigationBarBackButtonHidden(true)
+//                            .navigationBarHidden(true), isActive:
+//                            $back){
+//                EmptyView()
+//            }
+//            NavigationLink(destination: EmptyView()) {
+//                EmptyView()
+//            }
+
             if fire.inGame {
                 if stew {
-                    oneV1View(ActiveGame: GameView(gml: gm))
+                    oneV1View(gm: gm)
+                }
+                else if fire.GameError{
+                    ErrorView()
                 }
                 else {
                     Text("wait for host to start game")
@@ -58,11 +64,9 @@ struct lobbyView: View {
                     }
             }
             else {
-//                Text("Lobby")
                 Text("loading game")
                 ProgressView()
                     .padding([.bottom], 40)
-//                Text()
                 Button("Back") {
                     back = true
                 }
@@ -75,11 +79,9 @@ struct lobbyView: View {
             Alert(title: Text("Quit Game?"),
             primaryButton: .destructive(Text("Yes")) {
 //                add code to remove from game
-                if FirebaseService.shared.game.players.count <= 1 {
-                    FirebaseService.shared.quitTheGame()
-                }
-                FirebaseService.shared.gameStarted = false
-                back = true
+                gm.leave()
+//                back = true
+                presentationMode.wrappedValue.dismiss()
                 print("Deleting...")
             },
             secondaryButton: .cancel(Text("No"))

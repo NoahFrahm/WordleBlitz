@@ -12,6 +12,8 @@ struct HostView: View {
     @State var play: Bool = false
     @State var players: [String] = ["Ronald", "Bob", "Harry"]
     @State var confirmQuit: Bool = false
+    @State var Quit: Bool = false
+
     @StateObject var gm: GameModel = GameModel()
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -21,13 +23,27 @@ struct HostView: View {
     var body: some View {
         NavigationView{
             VStack{
-                NavigationLink(destination: oneV1View(ActiveGame: GameView(gml: gm))
+                NavigationLink(destination: oneV1View(gm: gm)
                                 .navigationBarTitle("")
                                 .navigationBarBackButtonHidden(true)
                                 .navigationBarHidden(true), isActive:
                                 $play){
                     EmptyView()
                 }
+//                NavigationLink(destination: EmptyView()) {
+//                    EmptyView()
+//                }
+                NavigationLink(destination: GameModeView()
+                                .navigationBarTitle("")
+                                .navigationBarBackButtonHidden(true)
+                                .navigationBarHidden(true), isActive:
+                                $Quit){
+                    EmptyView()
+                }
+                NavigationLink(destination: EmptyView()) {
+                    EmptyView()
+                }
+
 
                 List{
                     let playerCount = gm.game?.players.count ?? 0
@@ -36,7 +52,6 @@ struct HostView: View {
                         ProgressView()
                     }
                     else {
-//                        Text("players")
                         ForEach(gm.game?.players.sorted(by: >) ?? [("NA","NA")], id: \.key) { id, name  in
                             if id != gm.currentUser.id {
                                 HStack{
@@ -57,7 +72,7 @@ struct HostView: View {
                         }
                     }
                     
-                    Button(action: {confirmQuit = true}) {
+                    Button(action: {confirmQuit.toggle()}) {
                         Text("Quit")
                             .foregroundColor(.red)
                             .font(.title2)
@@ -72,11 +87,14 @@ struct HostView: View {
 //                    if FirebaseService.shared.game.players.count <= 1 {
 //                        FirebaseService.shared.quitTheGame()
 //                    }
-                    self.presentationMode.wrappedValue.dismiss()
+//                    self.presentationMode.wrappedValue.dismiss()
+                    Quit.toggle()
+                    gm.leave()
+                    confirmQuit.toggle()
                     print("Deleting...")
                 },
                 secondaryButton: .cancel(Text("No"))
-                )
+                {confirmQuit.toggle()})
             }
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)

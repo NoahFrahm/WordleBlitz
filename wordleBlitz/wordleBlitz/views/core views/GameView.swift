@@ -23,87 +23,99 @@ struct GameView: View {
 
     
     var body: some View {
-        ZStack{
-            NavigationLink(destination: podiumView()
-                            .navigationBarTitle("")
-                            .navigationBarBackButtonHidden(true)
-                            .navigationBarHidden(true), isActive:
-                            $podium){
-                EmptyView()
-            }
-            VStack{
-                letterGridView(gm: gm)
-                KeyRowView(model: gm, spacing: spacing).topRow
-                    .padding([.top], 20)
-                KeyRowView(model: gm, spacing: spacing).middleRow
-                KeyRowView(model: gm, spacing: spacing).bottomRow
-            }.disabled(gm.gameOver)
+        if podium {
+            podiumView()
+        }
+        else {
+            ZStack{
+    //            NavigationLink(destination: podiumView()
+    //                            .navigationBarTitle("")
+    //                            .navigationBarBackButtonHidden(true)
+    //                            .navigationBarHidden(true), isActive:
+    //                            $podium){
+    //                EmptyView()
+    //            }
+    //            NavigationLink(destination: EmptyView()) {
+    //                EmptyView()
+    //            }
 
-            if gm.gameOver {
                 VStack{
-                    ZStack{
-                        if gm.foundSol {
-                            Rectangle()
-                                .foregroundColor(.black)
-                                .frame(width: 120, height: 50, alignment: .center)
-                            Text("CONGRATS!")
-                                .foregroundColor(.white)
-                        }
-                        else {
-                            Rectangle()
-                                .foregroundColor(.black)
-                                .frame(width: 100, height: 50, alignment: .center)
-                            Text(gm.solution.uppercased())
-                                .foregroundColor(.white)
-                        }
-                    }.padding([.top], 30)
-                    Spacer()
-                    //TODO: - change back to without !
-                    if roundOver {
-                        if !gm.solutionSetDone {
-//                            FirebaseService.shared.game.
-                            Button(action: {
-                                print("Nav to custom screen")
-                                podium = true
-                            }) {
-                                NextButtonView(buttonName: "Finish")
+                    letterGridView(gm: gm)
+                    KeyRowView(model: gm, spacing: spacing).topRow
+                        .padding([.top], 20)
+                    KeyRowView(model: gm, spacing: spacing).middleRow
+                    KeyRowView(model: gm, spacing: spacing).bottomRow
+                }.disabled(gm.gameOver)
+                
+               
+                if gm.gameOver {
+                    VStack{
+                        ZStack{
+                            if gm.foundSol {
+                                Rectangle()
+                                    .foregroundColor(.black)
+                                    .frame(width: 120, height: 50, alignment: .center)
+                                Text("CONGRATS!")
+                                    .foregroundColor(.white)
+                            }
+                            else {
+                                Rectangle()
+                                    .foregroundColor(.black)
+                                    .frame(width: 100, height: 50, alignment: .center)
+                                Text(gm.solution.uppercased())
+                                    .foregroundColor(.white)
+                            }
+                        }.padding([.top], 30)
+                        Spacer()
+                        //TODO: - change back to without !
+                        if roundOver {
+                            if gm.solutionSetDone {
+    //                            FirebaseService.shared.game.
+                                Button(action: {
+                                    print("Nav to custom screen")
+                                    gm.finishWords()
+                                    podium = true
+                                }) {
+                                    NextButtonView(buttonName: "Finish")
+                                }
+                            }
+                            else {
+                                Button(action: {
+                                    gm.reset()
+                                    roundOver.toggle()
+                                }) {
+                                    NextButtonView(buttonName: "Next Word")
+                                }
                             }
                         }
-                        else {
-                            Button(action: {
-                                gm.reset()
-                                roundOver.toggle()
-                            }) {
-                                NextButtonView(buttonName: "Next Word")
-                            }
+                        Spacer()
+                    }.onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                            roundOver = true
                         }
                     }
-                    Spacer()
-                }.onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        roundOver = true
+                }
+                
+                if badSpell {
+                    VStack{
+                        ZStack{
+                            Rectangle()
+                                .foregroundColor(.black)
+                                .frame(width: 130, height: 50, alignment: .center)
+                            Text("INVALID WORD")
+                                .foregroundColor(.white)
+                        }.padding([.top], 30)
+                        
+                        Spacer()
                     }
+                }
+            }.onChange(of: gm.misSpellNotifier) { _ in
+                badSpell = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    badSpell = false
                 }
             }
             
-            if badSpell {
-                VStack{
-                    ZStack{
-                        Rectangle()
-                            .foregroundColor(.black)
-                            .frame(width: 130, height: 50, alignment: .center)
-                        Text("INVALID WORD")
-                            .foregroundColor(.white)
-                    }.padding([.top], 30)
-                    
-                    Spacer()
-                }
-            }
-        }.onChange(of: gm.misSpellNotifier) { _ in
-            badSpell = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                badSpell = false
-            }
         }
     }
 }
