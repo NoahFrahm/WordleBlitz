@@ -191,8 +191,10 @@ class GameModel: ObservableObject {
             await FirebaseService.shared.joinGame(with: host, userId: self.currentUser.id, userName: self.currentUser.name)
             if self.game != nil {
                 print("got our game")
-                self.solution = self.game!.solutionSet[0]
-                self.solutionSet = self.game!.solutionSet
+                DispatchQueue.main.async{
+                    self.solution = self.game!.solutionSet[0]
+                    self.solutionSet = self.game!.solutionSet
+                }
                 print("done setting solution set")
             }
 //            print("in game: \(FirebaseService.shared.inGame)")
