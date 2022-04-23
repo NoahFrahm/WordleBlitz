@@ -369,8 +369,10 @@ class GameModel: ObservableObject {
     private func checkGameOver() {
         print(self.stringGuess, self.solution)
         if self.guesses.count == self.maxGuesses || self.stringGuess.uppercased() == self.solution.uppercased() {
-            self.freqs[guesses.count-1] += 1
-            self.updateFreq(freqs: self.freqs)
+            if self.stringGuess.uppercased() == self.solution.uppercased(){
+                self.freqs[guesses.count-1] += 1
+                self.updateFreq(freqs: self.freqs)
+            }
             
             if self.solutionIndex >= (solutionSet.count - 1) {
                 self.solutionSetDone = true
