@@ -18,9 +18,12 @@ struct lobbyView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
-        NavigationView{
+//        NavigationView{
             VStack {
                 //TODO: - fix the navigation error here
+                //if we go back because game isnt loading game can
+                //still finish loading in back ground we need to cancel
+                //fetch on navigation back
                 NavigationLink(destination: GameModeView()
                                 .navigationBarTitle("")
                                 .navigationBarBackButtonHidden(true)
@@ -28,9 +31,9 @@ struct lobbyView: View {
                                 $back){
                     EmptyView()
                 }
-                NavigationLink(destination: EmptyView()) {
-                    EmptyView()
-                }
+//                NavigationLink(destination: EmptyView()) {
+//                    EmptyView()
+//                }
                 if fire.inGame {
                     if stew {
                         oneV1View(gm: gm)
@@ -91,14 +94,15 @@ struct lobbyView: View {
                 )
             }
             
-        }
+//        }
     }
 }
 
 struct lobbyView_Previews: PreviewProvider {
     static var previews: some View {
 //        lobbyView()
+        NavigationView{
         lobbyView(gm: GameModel(), stew: .constant(false))
-
+        }
     }
 }

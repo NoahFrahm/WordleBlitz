@@ -12,7 +12,7 @@ struct ErrorView: View {
     @State var home: Bool = false
     
     var body: some View {
-        NavigationView{
+//        NavigationView{
             VStack(alignment: .leading){
                 NavigationLink(destination: GameModeView()
                                 .navigationBarTitle("")
@@ -21,9 +21,9 @@ struct ErrorView: View {
                                 $home){
                     EmptyView()
                 }
-                NavigationLink(destination: EmptyView()) {
-                    EmptyView()
-                }
+//                NavigationLink(destination: EmptyView()) {
+//                    EmptyView()
+//                }
 
                 Text("An Error occured :(")
                 Button("Back to Main Menu") {
@@ -34,12 +34,14 @@ struct ErrorView: View {
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
-        }
+//        }
     }
 }
 
 struct ErrorView_Previews: PreviewProvider {
     static var previews: some View {
-        ErrorView()
+        NavigationView{
+            ErrorView()
+        }
     }
 }

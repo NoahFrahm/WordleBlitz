@@ -365,7 +365,7 @@ class GameModel: ObservableObject {
     
     //checks if game is over by max guesses or correct solution an sets gameover bool to true or false accordingly
     private func checkGameOver() {
-//        print(self.stringGuess, self.solution)
+        print(self.stringGuess, self.solution)
         if self.guesses.count == self.maxGuesses || self.stringGuess.uppercased() == self.solution.uppercased() {
             self.freqs[guesses.count-1] += 1
             self.updateFreq(freqs: self.freqs)

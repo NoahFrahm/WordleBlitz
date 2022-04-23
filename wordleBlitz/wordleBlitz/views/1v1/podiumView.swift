@@ -13,23 +13,14 @@ struct podiumView: View {
     @State var goHome: Bool = false
     @State var frame: Int = 0
     @State var done: Bool = false
+    @State var userId: String
     
     var frames = ["┬─┬ノ( º _ ºノ)", "┻━┻ ︵ ヽ(°□°ヽ)",]
     
     let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
-
-    
-//    var dummyData = [6, 12, 14]
-//    var ratios: [Double] {
-//        var rats: [Double] = []
-//        for num in dummyData {
-//            rats.append(Double(num)/Double(18))
-//        }
-//        return rats
-//    }
     
     var body: some View {
-        NavigationView{
+//        NavigationView{
             VStack(alignment: .leading){
                 NavigationLink(destination: GameModeView()
                                 .navigationBarTitle("")
@@ -80,6 +71,8 @@ struct podiumView: View {
                             Spacer()
                             Button("return to menu") {
                                 goHome = true
+//                                gm.leave()
+                                FirebaseService.shared.leaveTheGame(playerId: userId)
                             }
                             Spacer()
                         }
@@ -110,12 +103,12 @@ struct podiumView: View {
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
-        }
+//        }
     }
 }
 
 struct podiumView_Previews: PreviewProvider {
     static var previews: some View {
-        podiumView()
+        podiumView(userId: "my user id")
     }
 }

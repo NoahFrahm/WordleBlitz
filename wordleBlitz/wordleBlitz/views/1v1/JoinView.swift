@@ -21,7 +21,7 @@ struct JoinView: View {
     var gameCode: String = "BSAW"
     
     var body: some View {
-        NavigationView{
+//        NavigationView{
             VStack{
                 NavigationLink(destination: lobbyView(gm: gm, stew: $fire.gameStarted)
                                 .navigationBarTitle("")
@@ -93,7 +93,7 @@ struct JoinView: View {
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
-        }
+//        }
         .onAppear{
             gm.getOpenGames()
             print("appeared")
@@ -104,6 +104,8 @@ struct JoinView: View {
 
 struct JoinView_Previews: PreviewProvider {
     static var previews: some View {
-        JoinView(gm: GameModel())
+        NavigationView{
+            JoinView(gm: GameModel())
+        }
     }
 }

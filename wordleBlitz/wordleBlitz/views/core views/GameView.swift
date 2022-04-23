@@ -25,16 +25,16 @@ struct GameView: View {
 //        NavigationView{
             ZStack{
                 VStack{
-                    NavigationLink(destination: podiumView()
+                    NavigationLink(destination: podiumView(userId: gm.currentUser.id)
                                     .navigationBarTitle("")
                                     .navigationBarBackButtonHidden(true)
                                     .navigationBarHidden(true), isActive:
                                     $podium){
                         EmptyView()
                     }
-                    NavigationLink(destination: EmptyView()) {
-                        EmptyView()
-                    }
+//                    NavigationLink(destination: EmptyView()) {
+//                        EmptyView()
+//                    }
                     letterGridView(gm: gm)
                     KeyRowView(model: gm, spacing: spacing).topRow
                         .padding([.top], 20)
@@ -119,7 +119,9 @@ struct GameView: View {
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView(gml: GameModel(solution: "clock"))
+        NavigationView{
+            GameView(gml: GameModel(solution: "clock"))
+        }
     }
 }
 

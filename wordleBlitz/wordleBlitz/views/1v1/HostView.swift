@@ -21,7 +21,7 @@ struct HostView: View {
     var gameCode: String = "BSAW"
     
     var body: some View {
-        NavigationView{
+//        NavigationView{
             VStack{
                 NavigationLink(destination: oneV1View(gm: gm)
                                 .navigationBarTitle("")
@@ -94,7 +94,8 @@ struct HostView: View {
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
-        }.onAppear{
+//        }
+        .onAppear{
             gm.getTheGame()
             gm.updateSolSet()
         }
@@ -103,6 +104,8 @@ struct HostView: View {
 
 struct CreateView_Previews: PreviewProvider {
     static var previews: some View {
-        HostView(gm: GameModel())
+        NavigationView {
+            HostView(gm: GameModel())
+        }
     }
 }

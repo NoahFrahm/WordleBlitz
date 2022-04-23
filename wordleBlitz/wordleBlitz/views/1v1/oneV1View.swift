@@ -22,7 +22,7 @@ struct oneV1View: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
-        NavigationView{
+//        NavigationView{
             VStack{
                 NavigationLink(destination: GameModeView()
                                 .navigationBarTitle("")
@@ -68,7 +68,7 @@ struct oneV1View: View {
             .navigationBarTitle("")
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
-        }
+//        }
     }
 }
 
@@ -113,6 +113,8 @@ struct TopBarMultiplayer: View {
 
 struct oneV1View_Previews: PreviewProvider {
     static var previews: some View {
-        oneV1View(gm: GameModel(solution: "clock", solutionSet:  ["clock", "jazzy", "train"]))
+        NavigationView{
+            oneV1View(gm: GameModel(solution: "clock", solutionSet:  ["clock", "jazzy", "train"]))
+        }
     }
 }

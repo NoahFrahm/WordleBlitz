@@ -14,7 +14,7 @@ struct MultiplayerOptionsView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
-        NavigationView{
+//        NavigationView{
             VStack(alignment: .center, spacing: 20){
                 NavigationLink(destination: HostView()
                                 .navigationBarTitle("")
@@ -53,7 +53,7 @@ struct MultiplayerOptionsView: View {
                 }
                 Spacer()
             }
-        }
+//        }
     }
 }
 
@@ -82,6 +82,8 @@ struct OptionButtonView: View {
 
 struct MultiplayerOptionsView_Previews: PreviewProvider {
     static var previews: some View {
-        MultiplayerOptionsView()
+        NavigationView{
+            MultiplayerOptionsView()
+        }
     }
 }
