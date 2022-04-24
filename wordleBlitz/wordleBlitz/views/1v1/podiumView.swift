@@ -20,7 +20,7 @@ struct podiumView: View {
     
     var body: some View {
 //        NavigationView{
-            VStack(alignment: .leading){
+            VStack{
                 NavigationLink(destination: GameModeView()
                                 .navigationBarTitle("")
                                 .navigationBarBackButtonHidden(true)
@@ -49,6 +49,7 @@ struct podiumView: View {
                                 }
                             }
                         }
+//                        .padding([.leading,.trailing])
                     }
                     else {
                         let winner: String = fire.game.players[fire.getWinner()] ?? "error fetching winner"
