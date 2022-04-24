@@ -25,6 +25,7 @@
 		09490337280656A00077580A /* lobbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09490336280656A00077580A /* lobbyView.swift */; };
 		0985EFFB27FFF843002FE9D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0985EFFA27FFF843002FE9D9 /* GoogleService-Info.plist */; };
 		099FC70327FA4E86001729ED /* letterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099FC70227FA4E86001729ED /* letterStatus.swift */; };
+		09A348C42814DFD60035FA4D /* playgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A348C32814DFD60035FA4D /* playgroundView.swift */; };
 		09A51CF427F3A5FA0033F537 /* wordleBlitzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A51CF327F3A5FA0033F537 /* wordleBlitzApp.swift */; };
 		09A51CF627F3A5FA0033F537 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A51CF527F3A5FA0033F537 /* ContentView.swift */; };
 		09A51CF827F3A5FC0033F537 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09A51CF727F3A5FC0033F537 /* Assets.xcassets */; };
@@ -88,6 +89,7 @@
 		09490336280656A00077580A /* lobbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lobbyView.swift; sourceTree = "<group>"; };
 		0985EFFA27FFF843002FE9D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		099FC70227FA4E86001729ED /* letterStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = letterStatus.swift; sourceTree = "<group>"; };
+		09A348C32814DFD60035FA4D /* playgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playgroundView.swift; sourceTree = "<group>"; };
 		09A51CF027F3A5FA0033F537 /* wordleBlitz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wordleBlitz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09A51CF327F3A5FA0033F537 /* wordleBlitzApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wordleBlitzApp.swift; sourceTree = "<group>"; };
 		09A51CF527F3A5FA0033F537 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				09A51CF727F3A5FC0033F537 /* Assets.xcassets */,
 				09ADA3E227FA82C500C30111 /* animatedLetter.swift */,
 				09A51CF927F3A5FC0033F537 /* Preview Content */,
+				09A348C32814DFD60035FA4D /* playgroundView.swift */,
 			);
 			path = wordleBlitz;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09A51CF627F3A5FA0033F537 /* ContentView.swift in Sources */,
+				09A348C42814DFD60035FA4D /* playgroundView.swift in Sources */,
 				092D4E2D27FB8DB900046A20 /* GameModeView.swift in Sources */,
 				099FC70327FA4E86001729ED /* letterStatus.swift in Sources */,
 				092D4E3327FBAAC300046A20 /* game.swift in Sources */,

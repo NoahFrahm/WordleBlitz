@@ -206,8 +206,11 @@ class GameModel: ObservableObject {
 //    }
     
     func updateGuessCount() {
-        FirebaseService.shared.game.guessCount[self.currentUser.id] = self.totalGuessCount
-        FirebaseService.shared.updateGame(FirebaseService.shared.game)
+        withAnimation{
+            FirebaseService.shared.game.guessCount[self.currentUser.id] = self.totalGuessCount
+            FirebaseService.shared.updateGame(FirebaseService.shared.game)
+            
+        }
     }
     
     
@@ -371,7 +374,9 @@ class GameModel: ObservableObject {
         if self.guesses.count == self.maxGuesses || self.stringGuess.uppercased() == self.solution.uppercased() {
             if self.stringGuess.uppercased() == self.solution.uppercased(){
                 self.freqs[guesses.count-1] += 1
-                self.updateFreq(freqs: self.freqs)
+//                withAnimation{
+                    self.updateFreq(freqs: self.freqs)
+//                }
             }
             
             if self.solutionIndex >= (solutionSet.count - 1) {

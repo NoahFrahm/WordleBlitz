@@ -87,7 +87,6 @@ struct lobbyView: View {
     //                add code to remove from game
                     gm.leave()
                     back = true
-//                    presentationMode.wrappedValue.dismiss()
                     print("Deleting...")
                 },
                 secondaryButton: .cancel(Text("No"))

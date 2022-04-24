@@ -19,7 +19,7 @@ struct oneV1View: View {
         return gm.currentUser.name
     }
     
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+//    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
 //        NavigationView{

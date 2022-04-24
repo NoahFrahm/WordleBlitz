@@ -16,7 +16,6 @@ struct podiumView: View {
     @State var userId: String
     
     var frames = ["┬─┬ノ( º _ ºノ)", "┻━┻ ︵ ヽ(°□°ヽ)",]
-    
     let timer = Timer.publish(every: 1, on: .current, in: .common).autoconnect()
     
     var body: some View {
@@ -31,18 +30,25 @@ struct podiumView: View {
                 }
                 if fire.game != nil {
                     if !fire.gameFinished{
-                    ForEach(fire.game.players.sorted(by: >) , id: \.key) { id, name  in
-                        let guesses = fire.game.guessCount[id] ?? 0
-                        let ratio = Double(guesses) / Double(18)
                         HStack{
-                            Text("\(name)")
-                            Rectangle()
-                                .frame(width: ratio * 200, height: 40)
-                                .foregroundColor(.blue)
-                            Text("\(guesses)")
+                            Spacer()
+                            Text("waiting for other players to finish")
+                                .bold()
+                            Spacer()
+                        }
+                        VStack(alignment: .leading){
+                            ForEach(fire.game.players.sorted(by: >) , id: \.key) { id, name  in
+//                                let guesses = fire.game.guessCount[id] ?? 0
+//                                let ratio = Double(fire.game.guessCount[id] ?? 0) / Double(18)
+                                HStack(alignment: .center){
+                                    Rectangle()
+                                        .frame(width: 50 + (Double(fire.game.guessCount[id] ?? 0) / Double(18)) * 200, height: 40)
+                                        .overlay(Text("\(fire.game.guessCount[id] ?? 0)").foregroundColor(.white).padding([.trailing], 10), alignment: .trailing)
+                                    .foregroundColor(.blue)
+                                    Text("\(name)")
+                                }
                             }
                         }
-                        Text("waiting for other players to finish")
                     }
                     else {
                         let winner: String = fire.game.players[fire.getWinner()] ?? "error fetching winner"
@@ -109,6 +115,8 @@ struct podiumView: View {
 
 struct podiumView_Previews: PreviewProvider {
     static var previews: some View {
-        podiumView(userId: "my user id")
+        NavigationView{
+            podiumView(userId: "my user id")
+        }
     }
 }

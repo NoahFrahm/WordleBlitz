@@ -14,7 +14,7 @@ struct UserStatsView: View {
     var endVals: [Int] = [1, 2, 3, 2, 1, 0]
     @Binding var show: Bool
         
-    var barLength: Double = 100
+    var barLength: Double = 500
     var sumGuesses: Double {
         var total = 0.0
         for num in frequency {
