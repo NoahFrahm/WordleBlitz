@@ -13,87 +13,77 @@ struct lobbyView: View {
     @StateObject var gm: GameModel
     @State var confirmQuit: Bool = false
     @State var back: Bool = false
+//    game started var
     @Binding var stew: Bool
     
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+//    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
-//        NavigationView{
-            VStack {
-                //TODO: - fix the navigation error here
-                //if we go back because game isnt loading game can
-                //still finish loading in back ground we need to cancel
-                //fetch on navigation back
-                NavigationLink(destination: GameModeView()
-                                .navigationBarTitle("")
-                                .navigationBarBackButtonHidden(true)
-                                .navigationBarHidden(true), isActive:
-                                $back){
-                    EmptyView()
+        VStack {
+            NavigationLink(destination: GameModeView()
+                            .navigationBarTitle("")
+                            .navigationBarBackButtonHidden(true)
+                            .navigationBarHidden(true), isActive:
+                            $back){
+                EmptyView()
+            }
+            if fire.game != nil {
+                if stew {
+                    oneV1View(gm: gm)
                 }
-//                NavigationLink(destination: EmptyView()) {
-//                    EmptyView()
-//                }
-                if fire.inGame {
-                    if stew {
-                        oneV1View(gm: gm)
-                    }
-                    else if fire.GameError{
-                        ErrorView()
-                    }
-                    else {
-                        Text("wait for host to start game")
-                        List{
-                            let playerCount = fire.game.players.count
-                            Section(playerCount == 0 ? "Waiting on Players" : "\(playerCount) Players"){
-                            if fire.game == nil || playerCount == 1 {
-                                ProgressView()
-                            }
-                            else {
-                                ForEach(fire.game.players.sorted(by: >) , id: \.key) { id, name  in
-                                        HStack{
-                                            Text(name)
-                                        }
-                                }
-                            }
-                        }.font(.title3)
-                            Button(action: {confirmQuit = true}) {
-                                Text("Quit")
-                                    .foregroundColor(.red)
-                                    .font(.title2)
-                            }
-                        }
-                        .listStyle(InsetGroupedListStyle())
-                        }
+                else if fire.GameError{
+                    ErrorView()
                 }
                 else {
-                    Text("loading game")
-                    ProgressView()
-                        .padding([.bottom], 40)
-                    Button("Back") {
-                        back = true
+                    Text("wait for host to start game")
+                    List{
+                        let playerCount = fire.game.players.count
+                        Section(playerCount == 0 ? "Waiting on Players" : "\(playerCount) Players"){
+                        if fire.game == nil || playerCount == 1 {
+                            ProgressView()
+                        }
+                        else {
+                            ForEach(fire.game.players.sorted(by: >) , id: \.key) { id, name  in
+                                    HStack{
+                                        Text(name)
+                                    }
+                            }
+                        }
+                    }.font(.title3)
+                        Button(action: {confirmQuit = true}) {
+                            Text("Quit")
+                                .foregroundColor(.red)
+                                .font(.title2)
+                        }
                     }
+                    .listStyle(InsetGroupedListStyle())
+                    }
+            }
+            else {
+                Text("loading game")
+                ProgressView()
+                    .padding([.bottom], 40)
+                Button("Back") {
+                    back = true
                 }
             }
-            .navigationBarTitle("")
-            .navigationBarBackButtonHidden(true)
-            .navigationBarHidden(true)
-            .onChange(of: fire.inGame) { _ in
-                gm.updateSolSet()
-            }
-            .alert(isPresented: $confirmQuit) {
-                Alert(title: Text("Quit Game?"),
-                primaryButton: .destructive(Text("Yes")) {
-    //                add code to remove from game
-                    gm.leave()
-                    back = true
-                    print("Deleting...")
-                },
-                secondaryButton: .cancel(Text("No"))
-                )
-            }
-            
-//        }
+        }
+        .navigationBarTitle("")
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
+        .onChange(of: fire.inGame) { _ in
+            gm.updateSolSet()
+        }
+        .alert(isPresented: $confirmQuit) {
+            Alert(title: Text("Quit Game?"),
+            primaryButton: .destructive(Text("Yes")) {
+                back = true
+                gm.leave()
+                print("Deleting...")
+            },
+            secondaryButton: .cancel(Text("No"))
+            )
+        }
     }
 }
 

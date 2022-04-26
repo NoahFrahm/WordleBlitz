@@ -18,6 +18,7 @@ final class FirebaseService: ObservableObject {
     
     @Published var game: gameObj!
     @Published var openGames: [gameObj] = []
+    @Published var loading: Bool = false
     @Published var fetchComplete: Bool = false
     @Published var inGame: Bool = false
     @Published var gameStarted: Bool = false
@@ -127,10 +128,10 @@ final class FirebaseService: ObservableObject {
                 self.game = try? snapshot.data(as: gameObj.self)
                 
                 if self.game == nil {
-                    self.GameError = true
+//                    self.GameError = true
                     return
-                    
                 }
+                
                 self.gameFinished = self.playersDone()
                 self.gameStarted = self.game.play
                 print("game start? \(self.game.play)")
