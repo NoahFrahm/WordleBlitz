@@ -6,6 +6,8 @@ A rebuild of the popular word game "Wordle" without the 24 hour wait between wor
 - built on a firebase backend
 - use of swift ui animations
 - MVVM formatted code
+- User Defaults to store user data
+- 2400+ words
 
 
 https://user-images.githubusercontent.com/69765035/164959766-869a4a90-b303-43fe-889d-23adfea026c4.mov
