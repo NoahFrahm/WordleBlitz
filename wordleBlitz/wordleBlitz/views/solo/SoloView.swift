@@ -76,56 +76,6 @@ struct TopBarView: View {
     }
 }
 
-//var controlsView: some View {
-//    HStack{
-//        VStack(alignment: .leading){
-//                HStack{
-//                    Image("forest")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .clipShape(Circle())
-//                        .frame(width: 50, height: 50)
-//                    VStack(alignment: .leading){
-//                        Text("Joe Doe")
-//                            .bold()
-//                            .foregroundColor(.white)
-//                        HStack(spacing: 2){
-//                            Image(systemName: "video.fill")
-//                            Text("FaceTime Video")
-//                            Image(systemName: "greaterthan")
-//                        }
-//                        .foregroundColor(Color("textgray"))
-//                        .font(.footnote)
-//                    }
-//                    Spacer()
-//                    Button(action: {}) {
-//                        ZStack{
-//                            RoundedRectangle(cornerRadius: 50)
-//                                .fill(.red)
-//                                .frame(width: 70, height: 30)
-//                            Text("End")
-//                                .font(.footnote)
-//                                .bold()
-//                                .foregroundColor(.white)
-//                        }
-//                    }
-//
-//                }
-//                Spacer()
-//            }
-//            .padding([.top], 10)
-//            .padding([.bottom], 15)
-//            .padding([.leading, .trailing])
-//            .frame(width: 370, height: 130)
-//            .background(
-//                RoundedRectangle(cornerRadius: 35)
-//                    .fill(Color("darkgray"))
-//                    .mask(Color.gray.opacity(0.95))
-//                    .foregroundColor(.gray))
-//    }
-//}
-
-
 struct SoloView_Previews: PreviewProvider {
     static var previews: some View {
         SoloView()

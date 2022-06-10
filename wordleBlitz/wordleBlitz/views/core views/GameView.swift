@@ -137,6 +137,8 @@ struct KeyBoardKeyView: View {
     var body: some View {
         Button(action: {
             model.typeLetter(letter: letter)
+            let impactMed = UIImpactFeedbackGenerator(style: .soft)
+            impactMed.impactOccurred()
         }) {
             ZStack{
                 RoundedRectangle(cornerRadius: 5)
@@ -186,6 +188,8 @@ struct KeyRowView {
 
             Button(action: {
                 model.enter()
+                let impactMed = UIImpactFeedbackGenerator(style: .heavy)
+                impactMed.impactOccurred()
                 }
             ){
                 ZStack{
@@ -205,6 +209,8 @@ struct KeyRowView {
 
             Button(action: {
                 model.delete()
+                let impactMed = UIImpactFeedbackGenerator(style: .heavy)
+                impactMed.impactOccurred()
                 }
             ) {
                 ZStack{
